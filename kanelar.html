@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>KANKAN — Xiangyu Shi</title>
+  <title>Kanelär — Xiangyu Shi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
@@ -91,9 +91,9 @@
       gap: 4rem;
       align-items: start;
     }
-    .project-hero-left {}
     .project-meta-row {
-      display: flex; align-items: center; gap: 1.2rem;
+      display: flex; align-items: center; gap: .6rem;
+      flex-wrap: wrap;
       margin-bottom: 2rem;
     }
     .project-tag {
@@ -123,7 +123,6 @@
       min-width: 160px;
       margin-right: 5rem;
     }
-    .project-info-item {}
     .project-info-label {
       font-family: var(--font-mon); font-size: .68rem;
       letter-spacing: .18em; text-transform: uppercase;
@@ -167,6 +166,11 @@
       padding: 1.1rem 1.4rem;
       background: var(--bg-card); border: 1px solid var(--line);
       border-radius: 1rem;
+      transition: border-color .25s, box-shadow .25s;
+    }
+    .pain-item:hover {
+      border-color: rgba(61,92,58,.45);
+      box-shadow: 0 4px 20px rgba(58,74,46,.09);
     }
     .pain-dot {
       width: 8px; height: 8px; border-radius: 50%;
@@ -174,59 +178,6 @@
     }
     .pain-text {
       font-size: .95rem; font-weight: 500;
-      color: var(--ink-muted); line-height: 1.7;
-    }
-
-    /* Steps */
-    /* ─── PATH DIAGRAM ─── */
-    .path-diagram {
-      display: flex; align-items: center; gap: .6rem;
-      margin: 1.8rem 0;
-      flex-wrap: wrap;
-    }
-    .path-node {
-      display: flex; flex-direction: column; align-items: center; gap: .4rem;
-      background: var(--bg-card);
-      border: 1px solid var(--line);
-      border-radius: 1rem;
-      padding: 1rem 1.4rem;
-      min-width: 130px; text-align: center;
-      transition: border-color .25s, box-shadow .25s;
-    }
-    .path-node--active {
-      background: var(--accent);
-      border-color: var(--accent);
-      color: var(--white);
-    }
-    .path-node--active .path-node-num { color: rgba(240,238,230,.65); }
-    .path-node-num {
-      font-family: var(--font-mon); font-size: .6rem;
-      letter-spacing: .18em; text-transform: uppercase;
-      color: var(--accent-lt);
-    }
-    .path-node-label {
-      font-family: var(--font-ser); font-size: 1rem;
-      font-weight: 500; line-height: 1.3;
-    }
-    .path-arrow { flex-shrink: 0; opacity: .7; }
-    .steps-list {
-      display: flex; flex-direction: column; gap: 1rem; margin: 1.5rem 0;
-    }
-    .step-item {
-      display: flex; gap: 1.4rem; align-items: flex-start;
-    }
-    .step-num {
-      font-family: var(--font-ser); font-size: 2rem; font-weight: 400;
-      color: var(--accent); line-height: 1; flex-shrink: 0; width: 2rem;
-      text-align: right;
-    }
-    .step-content {}
-    .step-title {
-      font-family: var(--font-ser); font-size: 1.25rem;
-      font-weight: 600; color: var(--ink); margin-bottom: .3rem;
-    }
-    .step-desc {
-      font-size: .92rem; font-weight: 500;
       color: var(--ink-muted); line-height: 1.7;
     }
 
@@ -238,6 +189,12 @@
     .highlight-card {
       background: var(--bg-card); border: 1px solid var(--line);
       border-radius: 1.2rem; padding: 1.4rem 1.4rem 1.6rem;
+      transition: transform .28s var(--ease), box-shadow .28s var(--ease), border-color .25s;
+    }
+    .highlight-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(61,92,58,.45);
+      box-shadow: 0 8px 32px rgba(58,74,46,.1);
     }
     .highlight-icon {
       width: 40px; height: 40px; border-radius: .7rem;
@@ -269,9 +226,31 @@
       color: var(--ink-muted); margin-top: .8rem; text-align: center;
     }
 
+    /* ─── VIDEO BLOCK ─────────────────────────────────── */
+    .project-video {
+      width: calc(100% + 6rem); margin-left: -3rem;
+      border-radius: 1.2rem; overflow: hidden;
+      margin-top: 3rem; margin-bottom: .5rem;
+      box-shadow: 0 8px 48px rgba(58,74,46,.15);
+      background: #0d0d0c;
+      position: relative;
+    }
+    .project-video video {
+      width: 100%; height: auto;
+      display: block;
+      max-height: 78vh;
+      object-fit: contain;
+    }
+    .project-video-caption {
+      font-family: var(--font-mon); font-size: .68rem;
+      letter-spacing: .12em; text-transform: uppercase;
+      color: var(--ink-muted); margin-top: .8rem; text-align: center;
+      margin-bottom: 3rem;
+    }
+
     /* Outcome block */
     .outcome-block {
-      background: var(--ink); color: var(--white);
+      background: #1a3320; color: var(--white);
       border-radius: 1.6rem; padding: 3rem 3.5rem;
       margin: 2rem 0;
     }
@@ -280,7 +259,7 @@
       color: rgba(240,238,230,.75); line-height: 1.85;
       margin-bottom: 0;
     }
-    .outcome-block strong { color: var(--bg); }
+    .outcome-block strong { color: rgba(194,230,194,.9); }
 
     /* CTA links */
     .project-cta {
@@ -317,117 +296,7 @@
       font-size: .72rem; font-family: var(--font-mon); letter-spacing: .1em;
     }
 
-    /* ─── RESPONSIVE ──────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .project-hero { grid-template-columns: 1fr; gap: 2.5rem; }
-      .project-info-bar { flex-direction: row; flex-wrap: wrap; padding-top: 0; gap: 2rem; margin-right: 0; }
-      .highlight-grid { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 768px) {
-      html { font-size: 16px; }
-      nav { padding: 1.2rem 1.5rem; }
-
-      .project-hero { padding: 7rem 1.5rem 3rem; }
-      .project-info-bar { flex-direction: row; flex-wrap: wrap; padding-top: 0; gap: 1.5rem; margin-right: 0; }
-      .project-body { padding: 3rem 1.5rem; }
-      .project-section { margin-bottom: 3rem; }
-      .project-img { width: 100%; margin-left: 0; border-radius: .8rem; }
-      .highlight-grid { grid-template-columns: 1fr; }
-      .path-diagram { flex-wrap: wrap; gap: .5rem; }
-      .path-node { min-width: 110px; padding: .8rem 1rem; }
-      .path-arrow { display: none; }
-      .steps-list { gap: .8rem; }
-      .step-num { font-size: 1.5rem; width: 1.5rem; }
-      .outcome-block { padding: 1.8rem; border-radius: 1rem; }
-      .project-cta { flex-direction: column; }
-      footer { flex-direction: column; gap: 1rem; text-align: center; justify-content: center; }
-    }
-    @media (max-width: 480px) {
-      html { font-size: 15px; }
-      .project-hero-title { font-size: 3rem; }
-      .section-heading { font-size: 1.8rem; }
-      .path-node { min-width: 90px; }
-      .outcome-block { padding: 1.4rem; }
-      .cta-btn { width: 100%; justify-content: center; }
-    }
-    /* ─── ANIMATIONS ──────────────────────────────────── */
-
-    /* Page load fade-in */
-    body { animation: pageFade .45s var(--ease) both; }
-    @keyframes pageFade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-
-    /* Hero entrance — staggered */
-    @keyframes heroUp {
-      from { opacity: 0; transform: translateY(22px); }
-      to   { opacity: 1; transform: none; }
-    }
-    @keyframes heroFade {
-      from { opacity: 0; }
-      to   { opacity: 1; }
-    }
-    @keyframes heroRight {
-      from { opacity: 0; transform: translateX(18px); }
-      to   { opacity: 1; transform: none; }
-    }
-    .project-meta-row   { opacity:0; animation: heroUp    .5s var(--ease) .10s both; }
-    .project-hero-title { opacity:0; animation: heroUp    .8s var(--ease) .28s both; }
-    .project-hero-sub   { opacity:0; animation: heroFade  .65s var(--ease) .52s both; }
-    .project-info-bar   { opacity:0; animation: heroRight .65s var(--ease) .70s both; }
-
-    /* Scroll reveal — base */
-    .reveal {
-      opacity: 0; transform: translateY(28px);
-      transition: opacity .7s var(--ease), transform .7s var(--ease);
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-
-    /* Reveal variants */
-    .reveal-img {
-      opacity: 0; transform: translateY(16px) scale(.98);
-      transition: opacity .75s var(--ease), transform .75s var(--ease);
-    }
-    .reveal-img.visible { opacity: 1; transform: none; }
-
-    /* Stagger delay helpers */
-    .stagger-delay-1 { transition-delay: .07s !important; }
-    .stagger-delay-2 { transition-delay: .14s !important; }
-    .stagger-delay-3 { transition-delay: .21s !important; }
-    .stagger-delay-4 { transition-delay: .28s !important; }
-    .stagger-delay-5 { transition-delay: .35s !important; }
-
-    /* ─── CARD HOVER EFFECTS ──────────────────────────── */
-
-    /* pain-item hover */
-    .pain-item {
-      transition: border-color .25s, box-shadow .25s;
-    }
-    .pain-item:hover {
-      border-color: rgba(61,92,58,.45);
-      box-shadow: 0 4px 20px rgba(58,74,46,.09);
-    }
-
-    /* highlight-card hover */
-    .highlight-card {
-      transition: transform .28s var(--ease), box-shadow .28s var(--ease), border-color .25s;
-    }
-    .highlight-card:hover {
-      transform: translateY(-3px);
-      border-color: rgba(61,92,58,.45);
-      box-shadow: 0 8px 32px rgba(58,74,46,.1);
-    }
-
-    /* path-node hover */
-    .path-node {
-      transition: border-color .25s, box-shadow .25s;
-    }
-    .path-node:hover {
-      border-color: rgba(61,92,58,.45);
-      box-shadow: 0 4px 16px rgba(58,74,46,.08);
-    }
-
+    /* ─── SCROLL TOP ──────────────────────────────────── */
     .scroll-top {
       position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
       display: flex; align-items: center; gap: .45rem;
@@ -451,6 +320,74 @@
       border-color: rgba(58,74,46,.2);
       box-shadow: 0 6px 20px rgba(58,74,46,.12);
     }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .project-hero { grid-template-columns: 1fr; gap: 2.5rem; }
+      .project-info-bar { flex-direction: row; flex-wrap: wrap; padding-top: 0; gap: 2rem; margin-right: 0; }
+      .highlight-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      html { font-size: 16px; }
+      nav { padding: 1.2rem 1.5rem; }
+      .project-hero { padding: 7rem 1.5rem 3rem; }
+      .project-info-bar { flex-direction: row; flex-wrap: wrap; padding-top: 0; gap: 1.5rem; margin-right: 0; }
+      .project-body { padding: 3rem 1.5rem; }
+      .project-section { margin-bottom: 3rem; }
+      .project-img { width: 100%; margin-left: 0; border-radius: .8rem; }
+      .project-video { width: 100%; margin-left: 0; border-radius: .8rem; }
+      .highlight-grid { grid-template-columns: 1fr; }
+      .outcome-block { padding: 1.8rem; border-radius: 1rem; }
+      .project-cta { flex-direction: column; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      html { font-size: 15px; }
+      .project-hero-title { font-size: 3rem; }
+      .section-heading { font-size: 1.8rem; }
+      .outcome-block { padding: 1.4rem; }
+      .cta-btn { width: 100%; justify-content: center; }
+    }
+
+    /* ─── ANIMATIONS ──────────────────────────────────── */
+    body { animation: pageFade .45s var(--ease) both; }
+    @keyframes pageFade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes heroUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @keyframes heroFade {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    @keyframes heroRight {
+      from { opacity: 0; transform: translateX(18px); }
+      to   { opacity: 1; transform: none; }
+    }
+    .project-meta-row   { opacity:0; animation: heroUp    .5s var(--ease) .10s both; }
+    .project-hero-title { opacity:0; animation: heroUp    .8s var(--ease) .28s both; }
+    .project-hero-sub   { opacity:0; animation: heroFade  .65s var(--ease) .52s both; }
+    .project-info-bar   { opacity:0; animation: heroRight .65s var(--ease) .70s both; }
+
+    .reveal {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity .7s var(--ease), transform .7s var(--ease);
+    }
+    .reveal.visible { opacity: 1; transform: none; }
+    .reveal-img {
+      opacity: 0; transform: translateY(16px) scale(.98);
+      transition: opacity .75s var(--ease), transform .75s var(--ease);
+    }
+    .reveal-img.visible { opacity: 1; transform: none; }
+
+    .stagger-delay-1 { transition-delay: .07s !important; }
+    .stagger-delay-2 { transition-delay: .14s !important; }
+    .stagger-delay-3 { transition-delay: .21s !important; }
+    .stagger-delay-4 { transition-delay: .28s !important; }
+    .stagger-delay-5 { transition-delay: .35s !important; }
   </style>
 </head>
 <body>
@@ -469,11 +406,12 @@
   <div class="project-hero">
     <div class="project-hero-left">
       <div class="project-meta-row">
-        <span class="project-tag">Product Design</span>
+        <span class="project-tag">Mobile Design</span>
+        <span class="project-tag">Interactive Prototype</span>
       </div>
-      <h1 class="project-hero-title">KANKAN</h1>
+      <h1 class="project-hero-title">Kanelär</h1>
       <p class="project-hero-sub">
-        A City Selection and Life Planning Tool for Chinese Digital Nomads.
+        A Swedish vocabulary app for people who just moved to Sweden.
       </p>
     </div>
     <div class="project-info-bar">
@@ -483,11 +421,11 @@
       </div>
       <div class="project-info-item">
         <div class="project-info-label">Type</div>
-        <div class="project-info-value">KTH Course Project</div>
+        <div class="project-info-value">Personal Project</div>
       </div>
       <div class="project-info-item">
         <div class="project-info-label">Year</div>
-        <div class="project-info-value">2024</div>
+        <div class="project-info-value">2026</div>
       </div>
     </div>
   </div>
@@ -495,179 +433,142 @@
   <!-- Body -->
   <div class="project-body">
 
-    <!-- Background -->
+    <!-- In one sentence -->
     <div class="project-section reveal">
-      <div class="section-eyebrow">Background</div>
-      <h2 class="section-heading">The rise of <em>remote work</em></h2>
+      <div class="section-eyebrow">In one sentence</div>
+      <h2 class="section-heading">Save the word you just <em>heard</em></h2>
       <p>
-        The rise of remote work is fueling a mobile lifestyle across China. Yet, digital nomads lack tools to decide their next move, as essential information is fragmented across platforms, preventing trusted, side-by-side comparisons.
+        A vocabulary app for people who just moved to Sweden. Save the new words you hear today, and see how many you've collected so far.
       </p>
     </div>
 
-    <!-- Image 1 -->
-    <div class="project-img reveal-img">
-      <img src="1.avif" alt="KANKAN — Overview" />
-      <div class="project-img-caption">KANKAN — Landing Page</div>
+    <!-- Inline video -->
+    <div class="project-video reveal-img">
+      <video
+        src="video.mp4"
+        autoplay
+        muted
+        playsinline
+        controls
+        preload="auto"
+        aria-label="Kanelär app walkthrough"
+      ></video>
+    </div>
+    <div class="project-video-caption">Kanelär — App Walkthrough</div>
+
+    <!-- Why I made this -->
+    <div class="project-section reveal">
+      <div class="section-eyebrow">Background</div>
+      <h2 class="section-heading">Why I <em>made this</em></h2>
+      <p>
+        When I was taking SFI (the Swedish language course for immigrants) in Stockholm, I picked up new words every day on the street, on the subway, in cafés.
+      </p>
+      <p>
+        I tried the mainstream language learning apps. I opened Duolingo, and first an owl was nagging me to do my daily tasks, then came the streak flames, the ads, the leaderboards.
+      </p>
+      <p>
+        But what I actually wanted to do in that moment was very simple: save the word I just heard.
+      </p>
+      <p>
+        I realized that for someone already living inside the language, what they need isn't a course that starts from zero. They need a vocabulary notebook that can keep up with the pace of daily life.
+      </p>
+      <p>
+        That's how Kanelär came about.
+      </p>
     </div>
 
-    <!-- Core Pain Points -->
+    <!-- A real use case -->
     <div class="project-section reveal">
-      <div class="section-eyebrow">Problem</div>
-      <h2 class="section-heading">Core <em>Pain Points</em></h2>
-      <p>When choosing their next city, digital nomads commonly face:</p>
+      <div class="section-eyebrow">Use case</div>
+      <h2 class="section-heading">Tuesday morning, <em>on the subway</em></h2>
+      <p>
+        Two Swedes next to me are chatting, and one word keeps coming up: "fika."
+      </p>
       <div class="pain-list">
         <div class="pain-item">
           <div class="pain-dot"></div>
-          <div class="pain-text">Fragmented city information, making it hard to form a quick understanding</div>
+          <div class="pain-text">Open Kanelär, search <em>fika</em>, see the definition "coffee break" with the example sentence "Vi tar en fika klockan tre." (We're having a fika at three.)</div>
         </div>
         <div class="pain-item">
           <div class="pain-dot"></div>
-          <div class="pain-text">Uncertainty about which places fit their budget, safety needs, and lifestyle preferences</div>
+          <div class="pain-text">Add it to my word list.</div>
         </div>
         <div class="pain-item">
           <div class="pain-dot"></div>
-          <div class="pain-text">Lack of practical, on-the-ground information, such as where to stay, community vibe, and local norms</div>
+          <div class="pain-text">On the way home from work, tap "Start learning," flip through the words I added today, mark the ones I know as "mastered" and the ones I didn't as "practice again."</div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-dot"></div>
+          <div class="pain-text">The number on the home screen goes +1.</div>
         </div>
       </div>
-      <p style="margin-top:1.2rem;">These issues make relocation inefficient and full of uncertainty.</p>
+      <p style="margin-top:1.2rem;">That's it.</p>
     </div>
 
-    <!-- Solution -->
-    <div class="project-section reveal">
-      <div class="section-eyebrow">Solution</div>
-      <h2 class="section-heading">A clear path <em>forward</em></h2>
-      <div class="path-diagram">
-        <div class="path-node">
-          <div class="path-node-num">01</div>
-          <div class="path-node-label">Understanding<br>the Problem</div>
-        </div>
-        <div class="path-arrow">
-          <svg width="40" height="16" viewBox="0 0 40 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0" y1="8" x2="34" y2="8" stroke="var(--accent-lt)" stroke-width="1.5"/>
-            <polyline points="28,2 36,8 28,14" fill="none" stroke="var(--accent-lt)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="path-node">
-          <div class="path-node-num">02</div>
-          <div class="path-node-label">Reaching<br>a Consensus</div>
-        </div>
-        <div class="path-arrow">
-          <svg width="40" height="16" viewBox="0 0 40 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="0" y1="8" x2="34" y2="8" stroke="var(--accent-lt)" stroke-width="1.5"/>
-            <polyline points="28,2 36,8 28,14" fill="none" stroke="var(--accent-lt)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="path-node path-node--active">
-          <div class="path-node-num">03</div>
-          <div class="path-node-label">Taking<br>Action</div>
-        </div>
-      </div>
-      <p>We break down the entire relocation process into three key steps:</p>
-      <div class="steps-list">
-        <div class="step-item">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <div class="step-title">Discover Cities</div>
-            <div class="step-desc">Use clear city tags to help users quickly grasp key highlights.</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <div class="step-title">Choose a City</div>
-            <div class="step-desc">Filter and receive recommendations based on personal preferences.</div>
-          </div>
-        </div>
-        <div class="step-item">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <div class="step-title">Settle In &amp; Live</div>
-            <div class="step-desc">Get answers and make plans through Q&amp;A, resolving various questions before departure.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Image 2 -->
-    <div class="project-img reveal-img">
-      <img src="2.avif" alt="KANKAN — Solution Design" />
-      <div class="project-img-caption">KANKAN — Solution Design</div>
-    </div>
-
-    <!-- Experience Highlights -->
+    <!-- Design decisions -->
     <div class="project-section reveal">
       <div class="section-eyebrow">Design</div>
-      <h2 class="section-heading">Experience <em>Highlights</em></h2>
+      <h2 class="section-heading">A few design <em>decisions</em></h2>
       <div class="highlight-grid">
         <div class="highlight-card">
           <div class="highlight-icon">
             <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="3" width="8" height="16" rx="1.5"/>
-              <rect x="12" y="3" width="8" height="16" rx="1.5"/>
+              <rect x="3" y="3" width="7" height="7" rx="1.2"/>
+              <rect x="12" y="3" width="7" height="7" rx="1.2"/>
+              <rect x="3" y="12" width="7" height="7" rx="1.2"/>
+              <rect x="12" y="12" width="7" height="7" rx="1.2"/>
             </svg>
           </div>
-          <div class="highlight-title">Comparable City Information</div>
-          <div class="highlight-desc">From cost of living and climate to safety and community atmosphere, everything is clear at a glance.</div>
+          <div class="highlight-title">Four numbers only</div>
+          <div class="highlight-desc">The home screen shows only four numbers: total words, practicing, mastered, added today.</div>
         </div>
         <div class="highlight-card">
           <div class="highlight-icon">
             <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M4 6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v7a2 2 0 0 1-2 2H8l-4 3V6Z"/>
+              <circle cx="11" cy="11" r="7.5"/>
+              <path d="M11 7v4l2.5 2.5"/>
             </svg>
           </div>
-          <div class="highlight-title">Life-Oriented Support</div>
-          <div class="highlight-desc">Find instant answers to common practical questions, such as accommodation, cultural habits, and safety.</div>
+          <div class="highlight-title">Big and quiet</div>
+          <div class="highlight-desc">The numbers are big and quiet, so you can see your progress at a glance — without notifications or streaks demanding your attention.</div>
         </div>
         <div class="highlight-card">
           <div class="highlight-icon">
             <svg viewBox="0 0 22 22" fill="none" stroke="var(--accent)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="11" cy="8" r="3.5"/>
-              <path d="M4 19c0-3.87 3.13-7 7-7s7 3.13 7 7"/>
-              <circle cx="17" cy="7" r="2" fill="none"/>
-              <path d="M19.5 5.5l1-1M19.5 8.5l1 1"/>
+              <path d="M11 4c-2 0-5 1.5-5 4.5 0 2 1.2 3.5 3 4l1 3.5h2l1-3.5c1.8-.5 3-2 3-4C16 5.5 13 4 11 4Z"/>
             </svg>
           </div>
-          <div class="highlight-title">Insights from Real Users</div>
-          <div class="highlight-desc">Cities are presented not just as data points, but as places where real people have lived and shared their experiences.</div>
+          <div class="highlight-title">Capture-first flow</div>
+          <div class="highlight-desc">The whole app is designed around a single action: saving the word you just heard, as fast as possible, before the moment passes.</div>
         </div>
       </div>
     </div>
 
-    <!-- Image 3 -->
-    <div class="project-img reveal-img">
-      <img src="3.avif" alt="KANKAN — Solution Design" />
-      <div class="project-img-caption">KANKAN — Solution Design</div>
-    </div>
-
-    <!-- Image 4 -->
-    <div class="project-img reveal-img">
-      <img src="4.avif" alt="KANKAN — Final Interface" />
-      <div class="project-img-caption">KANKAN — Solution Design</div>
-    </div>
-
-    <!-- Final Outcome -->
+    <!-- The name -->
     <div class="project-section reveal">
-      <div class="section-eyebrow">Outcome</div>
-      <h2 class="section-heading">From chaos to <em>clarity</em></h2>
-      <div class="outcome-block">
-        <p>
-          KANKAN helps users transform the originally chaotic and uncertain city selection process into one that is more directed, evidence-based, and actionable. It turns <strong>"I don't know where to go"</strong> into <strong>"I know which places are right for me."</strong>
-        </p>
-      </div>
+      <div class="section-eyebrow">The name</div>
+      <h2 class="section-heading">Why a <em>cinnamon roll</em></h2>
+      <p>
+        I asked myself: what's something Swedes touch every day, that newcomers run into right away, and that has a bit of warmth to it?
+      </p>
+      <p>
+        A cinnamon roll. Sweden even has a Cinnamon Roll Day (October 4th). It's the most everyday piece of bread in this country, and one of the first Swedish nouns everyone learns.
+      </p>
+      <p>
+        That's where the name came from: <strong>Kanel</strong> (cinnamon) + <strong>lär</strong> (learn) = <strong>Kanelär</strong>.
+      </p>
+      <p>Made in Stockholm, with cinnamon. 🥐</p>
     </div>
 
     <div class="divider"></div>
 
-    <!-- View Project Links -->
+    <!-- View Project -->
     <div class="project-section reveal">
       <div class="section-eyebrow">View Project</div>
       <h2 class="section-heading" style="font-size:1.8rem;">Explore the work</h2>
       <div class="project-cta">
-        <a href="#" class="cta-btn cta-btn-primary" onclick="alert('The prototype is available upon request.\nPlease contact: tiffanysxy@outlook.com'); return false;">
-          Prototype Demo ↗
-        </a>
-        <a href="https://www.canva.com/design/DAG4fpiI-NQ/bUfmURGUBznf8V3eQBCtJg/edit" target="_blank" class="cta-btn cta-btn-secondary">
-          Introduction Slides ↗
+        <a href="https://kanelar.figma.site/" target="_blank" class="cta-btn cta-btn-primary">
+          Interactive Prototype ↗
         </a>
       </div>
     </div>
@@ -704,6 +605,7 @@
         cursor.style.background='var(--ink)';
       });
     });
+
     const scrollTopBtn = document.getElementById('scrollTopBtn');
     window.addEventListener('scroll', () => {
       scrollTopBtn.classList.toggle('visible', window.scrollY > 500);
@@ -712,13 +614,11 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    /* ── Nav shrink on scroll ── */
     const nav = document.getElementById('nav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 60);
     }, { passive: true });
 
-    /* ── Scroll reveal observer ── */
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -728,8 +628,7 @@
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-    /* ── Stagger grid children ── */
-    document.querySelectorAll('.highlight-grid, .pain-list, .steps-list').forEach(grid => {
+    document.querySelectorAll('.highlight-grid, .pain-list').forEach(grid => {
       [...grid.children].forEach((child, i) => {
         if (!child.classList.contains('reveal')) child.classList.add('reveal');
         child.classList.add('stagger-delay-' + Math.min(i + 1, 5));
