@@ -805,7 +805,7 @@
        Base: Morandi greyed sage  #6A7C58  (L 42%, more grey)
        Centre: luminous cool mint  rgba(208,242,215)
        Warm outer ↔ cool luminous centre                          */
-    .card-cover--03, .card-cover--09, .card-cover--06 {
+    .card-cover--03, .card-cover--09 {
       --title-color: rgba(238,236,222,.90);
       --num-color:   rgba(238,236,222,1);
       background:
@@ -828,6 +828,35 @@
         ),
         /* Morandi greyed sage base */
         linear-gradient(145deg, #7A9068, #849A72 55%, #768C64);
+    }
+
+    /* ── CARD 08 SoundClimbing — Lavender × Peach ─────────────────
+       Base: Morandi lavender  #9690A8  (cool, grey-violet)
+       Centre: deep warm peach, radiates outward getting lighter
+       Deep coral-peach core → soft peach mid → pale cream edge   */
+    .card-cover--06 {
+      --title-color: rgba(255,250,245,.90);
+      --num-color:   rgba(255,250,245,1);
+      background:
+        /* Primary — deep peach core fading radially to light */
+        radial-gradient(ellipse 90% 94% at 50% 38%,
+          rgba(230,130,80,.68)  0%,
+          rgba(240,162,112,.48) 10%,
+          rgba(248,188,148,.26) 24%,
+          rgba(252,210,172,.10) 42%,
+          rgba(254,225,195,.04) 58%,
+          rgba(255,238,218,.01) 72%,
+          transparent           84%
+        ),
+        /* Whisper bloom — outer peachy haze */
+        radial-gradient(ellipse 100% 100% at 50% 40%,
+          rgba(245,185,138,.12) 0%,
+          rgba(248,205,165,.05) 48%,
+          rgba(252,220,185,.01) 68%,
+          transparent           82%
+        ),
+        /* Morandi lavender base */
+        linear-gradient(148deg, #9690A8, #9E98B0 55%, #928CA4);
     }
 
     /* ── VARIATION C — Morning Veil ─────────────────────────────────
