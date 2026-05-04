@@ -723,7 +723,7 @@
       padding: 0 .05rem; line-height: 1;
     }
 
-    /* ─── CARD COVER (default visible → fades on hover) ── */
+    /* ─── CARD COVER (postal edition) ─────────────── */
     .card-cover {
       position: absolute; inset: 0;
       opacity: 1; pointer-events: none;
@@ -732,76 +732,137 @@
     }
     .project-card:hover .card-cover { opacity: 0; }
 
-    /* 4-corner brackets via 2 elements × 2 pseudo-elements */
-    .card-cover::before, .card-cover::after,
-    .cover-inner::before, .cover-inner::after {
-      content: ''; position: absolute; width: 13px; height: 13px;
+    /* Floating-card lift: thumbnail sits above project-info */
+    .project-thumb {
+      box-shadow:
+        0 1px 0 rgba(255,255,255,.72),
+        0 4px 18px rgba(0,0,0,.11),
+        0 1px 6px rgba(0,0,0,.07);
+      position: relative;
     }
-    .cover-inner { position: absolute; inset: .78rem; }
-    .card-cover::before  { top:.78rem;    left:.78rem;
-      border-top: 1px solid var(--br); border-left: 1px solid var(--br); }
-    .card-cover::after   { bottom:.78rem; right:.78rem;
-      border-bottom: 1px solid var(--br); border-right: 1px solid var(--br); }
-    .cover-inner::before { top:0; right:0;
-      border-top: 1px solid var(--br); border-right: 1px solid var(--br); }
-    .cover-inner::after  { bottom:0; left:0;
-      border-bottom: 1px solid var(--br); border-left: 1px solid var(--br); }
 
+    /* Postmark ring — semi-transparent circle, bottom-right */
+    .card-cover::before {
+      content: '';
+      position: absolute;
+      right: -14%;
+      bottom: 8%;
+      width: 96px; height: 96px;
+      border-radius: 50%;
+      border: 1.5px solid var(--pk);
+      box-shadow: 0 0 0 10px var(--pk-thin), inset 0 0 0 10px var(--pk-thin);
+      pointer-events: none;
+    }
+
+    /* Envelope fold line — subtle diagonal across card */
+    .card-cover::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        136deg,
+        transparent calc(68% - .5px),
+        var(--pk) calc(68% - .5px),
+        var(--pk) calc(68% + .5px),
+        transparent calc(68% + .5px)
+      );
+      pointer-events: none;
+    }
+
+    /* Stamp-perforation border uses cover-inner pseudo-elements */
+    .cover-inner { position: absolute; inset: .72rem; pointer-events: none; }
+    .cover-inner::before, .cover-inner::after { display: none; }
+
+    /* Number — smaller (1.45 rem), top-left with stamp dashes */
     .cover-num {
-      position: absolute; top: .68rem; left: .85rem;
-      font-family: var(--font-mon); font-size: 2.9rem;
-      letter-spacing: .04em; line-height: 1; color: var(--cn);
+      position: absolute; top: .8rem; left: .88rem;
+      font-family: var(--font-mon); font-size: 1.1rem;
+      letter-spacing: .06em; line-height: 1;
+      color: var(--ct); opacity: .65;
     }
-    .cover-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 1.5rem; }
+    .cover-num::after {
+      content: '';
+      position: absolute; inset: -3px -5px;
+      border: 1.5px dashed var(--pk);
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    /* Title block — centered on card */
+    .cover-text {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 1.6rem;
+    }
     .cover-title {
-      font-family: var(--font-ser); font-size: 1.85rem; font-weight: 400;
-      line-height: 1.1; color: var(--ct);
+      font-family: var(--font-ser);
+      font-size: 1.55rem; font-weight: 400;
+      line-height: 1.1; letter-spacing: .015em;
+      color: var(--ct);
     }
-    .cover-sub { display: none; }
+    .cover-sub  { display: none; }
     .cover-deco { display: none; }
 
-    /* Light text on dark covers: 01(blue), 03(forest), 05(navy), 06(teal), 07(olive) */
-    .card-cover--01, .card-cover--03, .card-cover--05,
-    .card-cover--06, .card-cover--07 {
-      --br: rgba(240,238,230,.32); --cn: rgba(240,238,230,.48);
-      --ct: rgba(240,238,230,.92); --cs: rgba(240,238,230,.55);
+    /* ── Colour tokens: light text on dark covers ─ */
+    .card-cover--02, .card-cover--03, .card-cover--05,
+    .card-cover--06, .card-cover--07, .card-cover--08, .card-cover--09 {
+      --ct:      rgba(244,239,230,.92);
+      --pk:      rgba(244,239,230,.28);
+      --pk-thin: rgba(244,239,230,.05);
     }
-    /* Dark text on light covers: 02(rose), 04(cream), 08(ice), 09(lavender) */
-    .card-cover--02, .card-cover--04, .card-cover--08, .card-cover--09 {
-      --br: rgba(28,22,18,.22);   --cn: rgba(28,22,18,.36);
-      --ct: rgba(28,22,18,.82);   --cs: rgba(28,22,18,.45);
+    /* Dark text on light covers (01 parchment, 04 ivory) */
+    .card-cover--01, .card-cover--04 {
+      --ct:      rgba(46,36,26,.82);
+      --pk:      rgba(46,36,26,.22);
+      --pk-thin: rgba(46,36,26,.04);
     }
 
-    /* Gradient backgrounds — matched to 9cover reference */
-    .card-cover--01 { /* Kaleido: periwinkle blue */
-      background: radial-gradient(ellipse at 40% 28%, rgba(190,210,238,.55) 0%, transparent 60%),
-                  linear-gradient(150deg,#9db2cc,#afc2d8 40%,#9db2cc 80%,#8fa4be); }
-    .card-cover--02 { /* Social VR: dusty rose */
-      background: radial-gradient(ellipse at 62% 28%, rgba(232,205,200,.52) 0%, transparent 58%),
-                  linear-gradient(148deg,#c8a8a4,#d8b8b4 40%,#c6a6a2 80%,#bc9c98); }
-    .card-cover--03 { /* Sound Climbing: dark forest */
-      background: radial-gradient(ellipse at 55% 25%, rgba(48,88,38,.4) 0%, transparent 55%),
-                  linear-gradient(142deg,#0d1a0b,#152412 50%,#0b1608); }
-    .card-cover--04 { /* Kanelär: warm cream */
-      background: radial-gradient(ellipse at 45% 35%, rgba(255,252,242,.68) 0%, transparent 65%),
-                  linear-gradient(155deg,#e4dcc8,#ece4d0 40%,#e0d8c8 80%,#d6cebe); }
-    .card-cover--05 { /* AI Hub: deep navy */
-      background: radial-gradient(ellipse at 70% 25%, rgba(55,80,150,.32) 0%, transparent 50%),
-                  repeating-linear-gradient(0deg,transparent,transparent 5px,rgba(255,255,255,.02) 5px,rgba(255,255,255,.02) 6px),
-                  linear-gradient(145deg,#1a2545,#243060 55%,#18234a); }
-    .card-cover--06 { /* GameFlow: sage teal */
-      background: radial-gradient(ellipse at 65% 28%, rgba(200,228,218,.38) 0%, transparent 58%),
-                  linear-gradient(150deg,#7aa4a0,#8ab4b0 38%,#78a09c 80%,#6e9898); }
-    .card-cover--07 { /* SmartHire: dark olive */
-      background: radial-gradient(ellipse at 72% 35%, rgba(80,122,48,.4) 0%, transparent 55%),
-                  linear-gradient(145deg,#2a3a14,#38481c 55%,#263614); }
-    .card-cover--08 { /* KörkortHub: pale ice blue */
-      background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,.62) 0%, transparent 65%),
-                  linear-gradient(155deg,#ccd8e8,#d8e4f2 40%,#cad6e6 80%,#c0cede); }
-    .card-cover--09 { /* KANKAN: soft lavender */
-      background: radial-gradient(ellipse at 50% 35%, rgba(222,212,242,.52) 0%, transparent 60%),
-                  linear-gradient(150deg,#b0a0c2,#c0b0d2 38%,#aea0c0 80%,#a898bc); }
-
+    /* ── Postal palette — muted, harmonious ─────── */
+    .card-cover--01 { /* SmartHire: warm parchment */
+      background:
+        radial-gradient(ellipse at 38% 30%, rgba(255,248,228,.45) 0%, transparent 62%),
+        linear-gradient(152deg, #D4C8A8, #DDD2B2 48%, #CEC4A2);
+    }
+    .card-cover--02 { /* GameFlow: Prussian postal */
+      background:
+        radial-gradient(ellipse at 62% 28%, rgba(160,196,228,.18) 0%, transparent 60%),
+        linear-gradient(148deg, #4A6478, #54707C 50%, #466070);
+    }
+    .card-cover--03 { /* Kanelär: reed sage */
+      background:
+        radial-gradient(ellipse at 44% 32%, rgba(160,210,160,.16) 0%, transparent 58%),
+        linear-gradient(145deg, #5E8E68, #6A9A72 52%, #5A8862);
+    }
+    .card-cover--04 { /* Kaleido: ivory rose */
+      background:
+        radial-gradient(ellipse at 54% 36%, rgba(255,248,242,.55) 0%, transparent 64%),
+        linear-gradient(155deg, #D0B8B0, #DBBFB8 44%, #CCB4AC 80%, #C6ACAA);
+    }
+    .card-cover--05 { /* KANKAN: ink indigo */
+      background:
+        radial-gradient(ellipse at 68% 26%, rgba(110,140,190,.2) 0%, transparent 54%),
+        linear-gradient(146deg, #3E5062, #48596E 54%, #3A4C5E);
+    }
+    .card-cover--06 { /* AIHub: slate steel */
+      background:
+        radial-gradient(ellipse at 40% 30%, rgba(140,168,210,.18) 0%, transparent 56%),
+        linear-gradient(150deg, #5C6E88, #687A94 50%, #586882);
+    }
+    .card-cover--07 { /* KörkortHub: warm umber */
+      background:
+        radial-gradient(ellipse at 64% 34%, rgba(210,190,148,.22) 0%, transparent 60%),
+        linear-gradient(148deg, #88785E, #94846A 46%, #86745C);
+    }
+    .card-cover--08 { /* SoundClimbing: forest teal */
+      background:
+        radial-gradient(ellipse at 50% 28%, rgba(110,168,148,.2) 0%, transparent 56%),
+        linear-gradient(145deg, #486858, #527464 50%, #446254);
+    }
+    .card-cover--09 { /* SocialVR: ash rose */
+      background:
+        radial-gradient(ellipse at 52% 34%, rgba(210,168,158,.22) 0%, transparent 60%),
+        linear-gradient(150deg, #886060, #946A6A 46%, #84585C);
+    }
 
     /* ─── TOUCH / MOBILE: hide desktop cursor ─────────── */
     @media (hover: none), (pointer: coarse) {
@@ -1204,7 +1265,7 @@
               </svg>
               <div class="cover-num">01</div>
               <div class="cover-text">
-                <div class="cover-title">Hiring,<br>Redesigned.</div>
+                <div class="cover-title">SmartHire</div>
                 <div class="cover-sub">End-to-end recruitment — one system, no chaos.</div>
               </div>
             </div>
@@ -1383,7 +1444,7 @@
               </svg>
               <div class="cover-num">02</div>
               <div class="cover-text">
-                <div class="cover-title">Play Better.</div>
+                <div class="cover-title">GameFlow</div>
                 <div class="cover-sub">Project management built for game studios.</div>
               </div>
             </div>
@@ -1419,7 +1480,7 @@
               </svg>
               <div class="cover-num">03</div>
               <div class="cover-text">
-                <div class="cover-title">Kanel + lär.</div>
+                <div class="cover-title">Kanelär</div>
                 <div class="cover-sub">Save the word you just heard.</div>
               </div>
             </div>
@@ -1457,7 +1518,7 @@
               </svg>
               <div class="cover-num">04</div>
               <div class="cover-text">
-                <div class="cover-title">Color,<br>Multiplied.</div>
+                <div class="cover-title">Kaleido</div>
                 <div class="cover-sub">AI-powered product visuals for e-commerce.</div>
               </div>
             </div>
@@ -1496,7 +1557,7 @@
               </svg>
               <div class="cover-num">05</div>
               <div class="cover-text">
-                <div class="cover-title">Where will<br>you go?</div>
+                <div class="cover-title">KANKAN</div>
                 <div class="cover-sub">City selection for digital nomads.</div>
               </div>
             </div>
@@ -1531,7 +1592,7 @@
               </svg>
               <div class="cover-num">06</div>
               <div class="cover-text">
-                <div class="cover-title">More Human<br>Than Machine.</div>
+                <div class="cover-title">AIHub</div>
                 <div class="cover-sub">The best AI resources, curated for you.</div>
               </div>
             </div>
@@ -1568,7 +1629,7 @@
               </svg>
               <div class="cover-num">07</div>
               <div class="cover-text">
-                <div class="cover-title">Drive Forward.</div>
+                <div class="cover-title">KörkortHub</div>
                 <div class="cover-sub">Swedish driving licence, simplified.</div>
               </div>
             </div>
@@ -1605,7 +1666,7 @@
               </svg>
               <div class="cover-num">08</div>
               <div class="cover-text">
-                <div class="cover-title" style="font-style:italic;">Design is<br>Never Neutral.</div>
+                <div class="cover-title">SoundClimbing</div>
                 <div class="cover-sub">Sonified real-time guidance for bouldering.</div>
               </div>
             </div>
@@ -1643,7 +1704,7 @@
               </svg>
               <div class="cover-num">09</div>
               <div class="cover-text">
-                <div class="cover-title">Presence Shapes<br>Behavior.</div>
+                <div class="cover-title">Social VR</div>
                 <div class="cover-sub">Can a virtual character change how people act?</div>
               </div>
             </div>
