@@ -723,7 +723,7 @@
       padding: 0 .05rem; line-height: 1;
     }
 
-    /* ─── CARD COVER — 弥散光 Diffused Light System ──────────────── */
+    /* ─── CARD COVER — 弥散光 Diffused Haze ──────────────────────── */
     .card-cover {
       position: absolute; inset: 0;
       opacity: 1; pointer-events: none;
@@ -741,19 +741,18 @@
       position: relative;
     }
 
-    /* All pseudo-elements and decoration cleared */
+    /* All decorative lines cleared */
     .card-cover::before, .card-cover::after,
     .cover-inner::before, .cover-inner::after { display: none; }
     .cover-inner { position: absolute; inset: .72rem; }
 
-    /* Number — serif, top-left, whisper opacity */
+    /* Number — serif, top-left */
     .cover-num {
       position: absolute; top: .78rem; left: .88rem;
       font-family: var(--font-ser);
       font-size: 1.15rem; font-weight: 400;
       letter-spacing: .04em; line-height: 1;
-      color: var(--num-color);
-      opacity: .50;
+      color: var(--num-color); opacity: .48;
     }
 
     /* Title — large, centred */
@@ -773,90 +772,91 @@
     .cover-deco { display: none; }
 
     /* ── VARIATION A — Nocturne ────────────────────────────────────
-       Outer: deep Morandi forest #1D2B1A (cool, dark)
-       Center glow: warm chartreuse  rgb(202,222,128)
-       Cold dark outer ↔ warm luminous center
-       Text: light cream                                           */
+       Base: Morandi dark olive-grey  #2C3E24  (L 20%, greyed)
+       Centre: luminous warm chartreuse  rgba(228,248,162)
+       Glow at 50% 38% (slightly above centre)
+       Diffuses to ~80% of frame — colour "soaks in"             */
     .card-cover--07, .card-cover--01, .card-cover--08 {
       --title-color: rgba(238,236,222,.90);
       --num-color:   rgba(238,236,222,1);
       background:
-        /* Primary soft-focus glow — warm chartreuse centre */
-        radial-gradient(ellipse 55% 62% at 50% 46%,
-          rgba(202,222,128,.72) 0%,
-          rgba(185,208,105,.50) 12%,
-          rgba(162,188,78,.28)  28%,
-          rgba(128,158,52,.10)  50%,
-          rgba(92,122,34,.03)   66%,
+        /* Primary glow — 7 stops, 90% ellipse, fades to zero at 82% */
+        radial-gradient(ellipse 90% 94% at 50% 38%,
+          rgba(228,248,162,.60) 0%,
+          rgba(215,240,142,.42) 10%,
+          rgba(195,228,115,.24) 24%,
+          rgba(168,208,84,.10)  42%,
+          rgba(135,178,55,.04)  58%,
+          rgba(100,145,30,.01)  72%,
+          transparent           84%
+        ),
+        /* Whisper bloom — fills outer haze, 100%×100% */
+        radial-gradient(ellipse 100% 100% at 50% 40%,
+          rgba(205,232,120,.12) 0%,
+          rgba(158,198,72,.05)  48%,
+          rgba(110,158,38,.01)  68%,
           transparent           82%
         ),
-        /* Secondary diffusion bloom — slightly offset */
-        radial-gradient(ellipse 80% 76% at 52% 50%,
-          rgba(178,205,95,.20)  0%,
-          rgba(140,170,62,.09)  38%,
-          rgba(90,130,38,.03)   60%,
-          transparent           78%
-        ),
-        /* Dark Morandi forest base */
-        linear-gradient(148deg, #1D2B1A, #232F1E 55%, #19261600);
+        /* Morandi dark olive-grey base */
+        linear-gradient(148deg, #2C3E24, #344628 55%, #283A20);
     }
 
     /* ── VARIATION B — Velvet Moss ─────────────────────────────────
-       Outer: warm Morandi olive  #586A44 (warm, mid)
-       Center glow: cool silver-mint  rgb(190,228,200)
-       Warm earthy outer ↔ cool luminous centre
-       Text: light cream                                           */
+       Base: Morandi greyed sage  #6A7C58  (L 42%, more grey)
+       Centre: luminous cool mint  rgba(208,242,215)
+       Warm outer ↔ cool luminous centre                          */
     .card-cover--03, .card-cover--09, .card-cover--06 {
       --title-color: rgba(238,236,222,.90);
       --num-color:   rgba(238,236,222,1);
       background:
-        /* Primary glow — cool silver-mint centre */
-        radial-gradient(ellipse 55% 62% at 50% 46%,
-          rgba(190,228,200,.68) 0%,
-          rgba(165,215,178,.46) 12%,
-          rgba(135,196,152,.24) 28%,
-          rgba(100,168,118,.09) 50%,
-          rgba(68,138,88,.03)   66%,
+        /* Primary glow — cool silver-mint */
+        radial-gradient(ellipse 90% 94% at 50% 38%,
+          rgba(208,242,215,.60) 0%,
+          rgba(185,232,195,.42) 10%,
+          rgba(158,218,168,.22) 24%,
+          rgba(125,192,138,.09) 42%,
+          rgba(88,162,102,.03)  58%,
+          rgba(55,128,68,.01)   72%,
+          transparent           84%
+        ),
+        /* Whisper bloom */
+        radial-gradient(ellipse 100% 100% at 50% 40%,
+          rgba(188,228,198,.11) 0%,
+          rgba(138,192,148,.04) 48%,
+          rgba(88,148,98,.01)   68%,
           transparent           82%
         ),
-        /* Secondary bloom */
-        radial-gradient(ellipse 78% 74% at 51% 48%,
-          rgba(172,218,185,.18) 0%,
-          rgba(125,180,140,.08) 40%,
-          rgba(80,142,98,.02)   62%,
-          transparent           78%
-        ),
-        /* Warm olive base */
-        linear-gradient(145deg, #566840, #5E724A 55%, #52643E);
+        /* Morandi greyed sage base */
+        linear-gradient(145deg, #687C56, #72865E 55%, #647850);
     }
 
     /* ── VARIATION C — Morning Veil ─────────────────────────────────
-       Outer: pale cool Morandi sage  #B8C8AA
-       Center glow: warm ivory-cream  rgb(240,244,222)
-       Cool washed sage outer ↔ warm glowing ivory centre
-       Text: dark olive (light bg)                                */
+       Base: Morandi pale grey-sage  #C0CAB4  (L 74%, greyer)
+       Centre: near-white warm ivory  rgba(248,252,235)
+       Cool washed sage ↔ warm luminous cream                     */
     .card-cover--04, .card-cover--05, .card-cover--02 {
       --title-color: rgba(42,56,30,.80);
       --num-color:   rgba(42,56,30,1);
       background:
-        /* Primary glow — warm ivory-cream centre */
-        radial-gradient(ellipse 55% 62% at 50% 46%,
-          rgba(240,244,222,.85) 0%,
-          rgba(225,234,200,.62) 12%,
-          rgba(205,218,172,.34) 28%,
-          rgba(180,198,142,.14) 50%,
-          rgba(155,176,112,.04) 66%,
+        /* Primary glow — near-white ivory, very luminous */
+        radial-gradient(ellipse 90% 94% at 50% 38%,
+          rgba(248,252,235,.86) 0%,
+          rgba(236,246,218,.64) 10%,
+          rgba(218,236,196,.36) 24%,
+          rgba(195,220,168,.14) 42%,
+          rgba(168,200,138,.05) 58%,
+          rgba(140,178,108,.01) 72%,
+          transparent           84%
+        ),
+        /* Whisper bloom */
+        radial-gradient(ellipse 100% 100% at 50% 40%,
+          rgba(238,248,222,.38) 0%,
+          rgba(205,225,180,.14) 48%,
+          rgba(170,198,142,.03) 68%,
           transparent           82%
         ),
-        /* Secondary diffusion */
-        radial-gradient(ellipse 76% 72% at 50% 48%,
-          rgba(230,238,208,.38) 0%,
-          rgba(200,214,170,.16) 40%,
-          rgba(168,186,132,.04) 62%,
-          transparent           76%
-        ),
-        /* Pale Morandi sage base */
-        linear-gradient(152deg, #B6C6A8, #C2D0B2 50%, #B2C4A4);
+        /* Morandi pale grey-sage base */
+        linear-gradient(152deg, #BEC8B2, #C4CEB8 50%, #BAC6AE);
     }
 
     /* ─── TOUCH / MOBILE: hide desktop cursor ─────────── */
