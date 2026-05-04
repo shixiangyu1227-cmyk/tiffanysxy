@@ -723,109 +723,179 @@
       padding: 0 .05rem; line-height: 1;
     }
 
-    /* ─── CARD COVER ──────────────────────────── */
+    /* ─── CARD COVER — Soft Glass × Neumorphism × Luminal Gradient ─ */
     .card-cover {
       position: absolute; inset: 0;
       opacity: 1; pointer-events: none;
-      transition: opacity .5s var(--ease);
+      transition: opacity .6s var(--ease);
       overflow: hidden;
+      /* Real frosted glass — blurs project photo underneath */
+      backdrop-filter: blur(22px) saturate(170%) brightness(1.04);
+      -webkit-backdrop-filter: blur(22px) saturate(170%) brightness(1.04);
+      /* Neumorphic inset — glass pressed into the card */
+      box-shadow:
+        inset 2.5px 2.5px 9px rgba(255,255,255,.22),
+        inset -2px  -2px  7px rgba(0,0,0,.14);
     }
     .project-card:hover .card-cover { opacity: 0; }
 
-    /* Floating lift */
+    /* Floating lift: thumbnail rises above text area */
     .project-thumb {
       box-shadow:
-        0 1px 0 rgba(255,255,255,.70),
-        0 4px 20px rgba(0,0,0,.12),
-        0 1px 6px rgba(0,0,0,.07);
+        0 1px 0 rgba(255,255,255,.78),
+        0 6px 28px rgba(0,0,0,.15),
+        0 2px 8px rgba(0,0,0,.09);
       position: relative;
     }
 
-    /* No decorative lines */
-    .card-cover::before, .card-cover::after,
+    /* Glass rim — bright top/left edge, dim bottom/right */
+    .card-cover::before {
+      content: '';
+      position: absolute; inset: 0;
+      border-top:   1px solid rgba(255,255,255,.36);
+      border-left:  1px solid rgba(255,255,255,.26);
+      border-right: 1px solid rgba(255,255,255,.10);
+      border-bottom:1px solid rgba(255,255,255,.10);
+      pointer-events: none;
+      z-index: 2;
+    }
+    .card-cover::after,
     .cover-inner::before, .cover-inner::after { display: none; }
     .cover-inner { position: absolute; inset: .72rem; }
 
-    /* Number — serif, top-left */
+    /* Number — light serif, top-left */
     .cover-num {
-      position: absolute; top: .75rem; left: .85rem;
+      position: absolute; top: .78rem; left: .88rem;
       font-family: var(--font-ser);
       font-size: 1.15rem; font-weight: 400;
       letter-spacing: .04em; line-height: 1;
-      color: rgba(228,234,220,.52);
+      color: rgba(244,242,232,.52);
+      text-shadow: 0 1px 4px rgba(0,0,0,.18);
+      z-index: 3;
     }
 
-    /* Title — centred */
+    /* Title — large, centred */
     .cover-text {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center; padding: 1.6rem;
+      z-index: 3;
     }
     .cover-title {
       font-family: var(--font-ser);
       font-size: 2.2rem; font-weight: 400;
       line-height: 1.08; letter-spacing: .01em;
-      color: rgba(228,234,220,.90);
+      color: rgba(244,242,232,.92);
+      text-shadow:
+        0 1px 0 rgba(255,255,255,.12),
+        0 2px 10px rgba(0,0,0,.24);
     }
     .cover-sub  { display: none; }
     .cover-deco { display: none; }
 
-    /* ── Monochromatic green 01→09 dark→light (range L 11%→39%) ── */
+    /* ── Tinted glass tints: warm yellow-green → cool blue-teal ──
+       RGB base shifts: R↓ (95→40), G≈steady (~112), B↑ (58→124)
+       Opacity: 0.42 → 0.34 (lighter glass as hue cools)         */
 
-    /* Stop 1 — L≈11%  Card 01 SmartHire (CSS --07) */
+    /* Card 01 SmartHire  H≈88°  rgb(95,115,58) */
     .card-cover--07 {
       background:
-        radial-gradient(ellipse at 42% 30%, rgba(52,82,36,.38) 0%, transparent 62%),
-        linear-gradient(148deg, #131C11, #172115 54%, #101810);
+        linear-gradient(138deg,
+          rgba(255,255,255,.22) 0%,
+          rgba(255,255,255,.08) 35%,
+          transparent 56%,
+          rgba(0,0,0,.07) 100%),
+        radial-gradient(ellipse at 40% 28%, rgba(255,255,255,.18) 0%, transparent 60%),
+        rgba(95,115,58,.42);
     }
-    /* Stop 2 — L≈15%  Card 02 GameFlow (CSS --03) */
+    /* Card 02 GameFlow   H≈97°  rgb(82,115,65) */
     .card-cover--03 {
       background:
-        radial-gradient(ellipse at 56% 28%, rgba(56,88,38,.36) 0%, transparent 60%),
-        linear-gradient(150deg, #192516, #1D2B1A 54%, #16221300);
+        linear-gradient(138deg,
+          rgba(255,255,255,.20) 0%,
+          rgba(255,255,255,.07) 35%,
+          transparent 56%,
+          rgba(0,0,0,.07) 100%),
+        radial-gradient(ellipse at 44% 30%, rgba(255,255,255,.16) 0%, transparent 60%),
+        rgba(82,115,65,.40);
     }
-    /* Stop 3 — L≈19%  Card 03 Kanelär (CSS --04) */
+    /* Card 03 Kanelär    H≈106° rgb(68,115,72) */
     .card-cover--04 {
       background:
-        radial-gradient(ellipse at 44% 32%, rgba(62,98,42,.34) 0%, transparent 60%),
-        linear-gradient(146deg, #20301B, #253720 54%, #1C2C17);
+        linear-gradient(138deg,
+          rgba(255,255,255,.20) 0%,
+          rgba(255,255,255,.07) 35%,
+          transparent 56%,
+          rgba(0,0,0,.07) 100%),
+        radial-gradient(ellipse at 42% 30%, rgba(255,255,255,.15) 0%, transparent 60%),
+        rgba(68,115,72,.40);
     }
-    /* Stop 4 — L≈23%  Card 04 Kaleido (CSS --01) */
+    /* Card 04 Kaleido    H≈116° rgb(56,114,80) */
     .card-cover--01 {
       background:
-        radial-gradient(ellipse at 62% 30%, rgba(70,110,48,.32) 0%, transparent 58%),
-        linear-gradient(152deg, #273A20, #2C4225 54%, #23361C);
+        linear-gradient(138deg,
+          rgba(255,255,255,.19) 0%,
+          rgba(255,255,255,.06) 35%,
+          transparent 56%,
+          rgba(0,0,0,.06) 100%),
+        radial-gradient(ellipse at 46% 30%, rgba(255,255,255,.15) 0%, transparent 60%),
+        rgba(56,114,80,.38);
     }
-    /* Stop 5 — L≈27%  Card 05 KANKAN (CSS --09) */
+    /* Card 05 KANKAN     H≈125° rgb(48,114,90) */
     .card-cover--09 {
       background:
-        radial-gradient(ellipse at 50% 34%, rgba(80,124,54,.30) 0%, transparent 58%),
-        linear-gradient(148deg, #2E4425, #34502A 54%, #2A4022);
+        linear-gradient(138deg,
+          rgba(255,255,255,.18) 0%,
+          rgba(255,255,255,.06) 35%,
+          transparent 56%,
+          rgba(0,0,0,.06) 100%),
+        radial-gradient(ellipse at 44% 30%, rgba(255,255,255,.14) 0%, transparent 60%),
+        rgba(48,114,90,.38);
     }
-    /* Stop 6 — L≈31%  Card 06 AIHub (CSS --05) */
+    /* Card 06 AIHub      H≈134° rgb(44,113,100) */
     .card-cover--05 {
       background:
-        radial-gradient(ellipse at 40% 30%, rgba(90,138,60,.28) 0%, transparent 58%),
-        linear-gradient(150deg, #354E2A, #3C5A30 54%, #324C28);
+        linear-gradient(138deg,
+          rgba(255,255,255,.17) 0%,
+          rgba(255,255,255,.06) 35%,
+          transparent 56%,
+          rgba(0,0,0,.06) 100%),
+        radial-gradient(ellipse at 42% 30%, rgba(255,255,255,.14) 0%, transparent 60%),
+        rgba(44,113,100,.37);
     }
-    /* Stop 7 — L≈34%  Card 07 KörkortHub (CSS --08) */
+    /* Card 07 KörkortHub H≈143° rgb(42,112,110) */
     .card-cover--08 {
       background:
-        radial-gradient(ellipse at 58% 32%, rgba(100,152,66,.26) 0%, transparent 58%),
-        linear-gradient(147deg, #3C582F, #446435 54%, #385430);
+        linear-gradient(138deg,
+          rgba(255,255,255,.17) 0%,
+          rgba(255,255,255,.05) 35%,
+          transparent 56%,
+          rgba(0,0,0,.06) 100%),
+        radial-gradient(ellipse at 40% 30%, rgba(255,255,255,.13) 0%, transparent 60%),
+        rgba(42,112,110,.36);
     }
-    /* Stop 8 — L≈37%  Card 08 SoundClimbing (CSS --06) */
+    /* Card 08 SoundClimb H≈152° rgb(40,112,118) */
     .card-cover--06 {
       background:
-        radial-gradient(ellipse at 46% 36%, rgba(110,166,72,.24) 0%, transparent 60%),
-        linear-gradient(153deg, #416234, #4A6E3A 50%, #3E5E30);
+        linear-gradient(138deg,
+          rgba(255,255,255,.16) 0%,
+          rgba(255,255,255,.05) 35%,
+          transparent 56%,
+          rgba(0,0,0,.05) 100%),
+        radial-gradient(ellipse at 44% 28%, rgba(255,255,255,.13) 0%, transparent 60%),
+        rgba(40,112,118,.35);
     }
-    /* Stop 9 — L≈39%  Card 09 Social VR (CSS --02) — max lightness */
+    /* Card 09 Social VR  H≈162° rgb(38,110,126) */
     .card-cover--02 {
       background:
-        radial-gradient(ellipse at 52% 38%, rgba(118,178,78,.22) 0%, transparent 62%),
-        linear-gradient(150deg, #476638, #506E40 50%, #436234);
+        linear-gradient(138deg,
+          rgba(255,255,255,.15) 0%,
+          rgba(255,255,255,.05) 35%,
+          transparent 56%,
+          rgba(0,0,0,.05) 100%),
+        radial-gradient(ellipse at 46% 30%, rgba(255,255,255,.12) 0%, transparent 60%),
+        rgba(38,110,126,.34);
     }
 
     /* ─── TOUCH / MOBILE: hide desktop cursor ─────────── */
