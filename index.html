@@ -723,6 +723,89 @@
       padding: 0 .05rem; line-height: 1;
     }
 
+    /* ─── CARD COVER (default visible → fades on hover) ── */
+    .card-cover {
+      position: absolute; inset: 0;
+      opacity: 1; pointer-events: none;
+      transition: opacity .5s var(--ease);
+      overflow: hidden;
+    }
+    .project-card:hover .card-cover { opacity: 0; }
+
+    /* 4-corner brackets via 2 elements × 2 pseudo-elements */
+    .card-cover::before, .card-cover::after,
+    .cover-inner::before, .cover-inner::after {
+      content: ''; position: absolute; width: 13px; height: 13px;
+    }
+    .cover-inner { position: absolute; inset: .78rem; }
+    .card-cover::before  { top:.78rem;    left:.78rem;
+      border-top: 1px solid var(--br); border-left: 1px solid var(--br); }
+    .card-cover::after   { bottom:.78rem; right:.78rem;
+      border-bottom: 1px solid var(--br); border-right: 1px solid var(--br); }
+    .cover-inner::before { top:0; right:0;
+      border-top: 1px solid var(--br); border-right: 1px solid var(--br); }
+    .cover-inner::after  { bottom:0; left:0;
+      border-bottom: 1px solid var(--br); border-left: 1px solid var(--br); }
+
+    .cover-num {
+      position: absolute; top: .68rem; left: .85rem;
+      font-family: var(--font-mon); font-size: .58rem;
+      letter-spacing: .2em; color: var(--cn);
+    }
+    .cover-text { position: absolute; bottom: 1rem; left: 1rem; right: 1rem; }
+    .cover-title {
+      font-family: var(--font-ser); font-size: 1.05rem; font-weight: 400;
+      line-height: 1.15; margin-bottom: .22rem; color: var(--ct);
+    }
+    .cover-sub {
+      font-family: var(--font-san); font-size: .62rem;
+      font-weight: 400; line-height: 1.5; color: var(--cs);
+    }
+    .cover-deco { position: absolute; pointer-events: none; }
+
+    /* Light text on dark covers: 01(blue), 03(forest), 05(navy), 06(teal), 07(olive) */
+    .card-cover--01, .card-cover--03, .card-cover--05,
+    .card-cover--06, .card-cover--07 {
+      --br: rgba(240,238,230,.32); --cn: rgba(240,238,230,.48);
+      --ct: rgba(240,238,230,.92); --cs: rgba(240,238,230,.55);
+    }
+    /* Dark text on light covers: 02(rose), 04(cream), 08(ice), 09(lavender) */
+    .card-cover--02, .card-cover--04, .card-cover--08, .card-cover--09 {
+      --br: rgba(28,22,18,.22);   --cn: rgba(28,22,18,.36);
+      --ct: rgba(28,22,18,.82);   --cs: rgba(28,22,18,.45);
+    }
+
+    /* Gradient backgrounds — matched to 9cover reference */
+    .card-cover--01 { /* Kaleido: periwinkle blue */
+      background: radial-gradient(ellipse at 40% 28%, rgba(190,210,238,.55) 0%, transparent 60%),
+                  linear-gradient(150deg,#9db2cc,#afc2d8 40%,#9db2cc 80%,#8fa4be); }
+    .card-cover--02 { /* Social VR: dusty rose */
+      background: radial-gradient(ellipse at 62% 28%, rgba(232,205,200,.52) 0%, transparent 58%),
+                  linear-gradient(148deg,#c8a8a4,#d8b8b4 40%,#c6a6a2 80%,#bc9c98); }
+    .card-cover--03 { /* Sound Climbing: dark forest */
+      background: radial-gradient(ellipse at 55% 25%, rgba(48,88,38,.4) 0%, transparent 55%),
+                  linear-gradient(142deg,#0d1a0b,#152412 50%,#0b1608); }
+    .card-cover--04 { /* Kanelär: warm cream */
+      background: radial-gradient(ellipse at 45% 35%, rgba(255,252,242,.68) 0%, transparent 65%),
+                  linear-gradient(155deg,#e4dcc8,#ece4d0 40%,#e0d8c8 80%,#d6cebe); }
+    .card-cover--05 { /* AI Hub: deep navy */
+      background: radial-gradient(ellipse at 70% 25%, rgba(55,80,150,.32) 0%, transparent 50%),
+                  repeating-linear-gradient(0deg,transparent,transparent 5px,rgba(255,255,255,.02) 5px,rgba(255,255,255,.02) 6px),
+                  linear-gradient(145deg,#1a2545,#243060 55%,#18234a); }
+    .card-cover--06 { /* GameFlow: sage teal */
+      background: radial-gradient(ellipse at 65% 28%, rgba(200,228,218,.38) 0%, transparent 58%),
+                  linear-gradient(150deg,#7aa4a0,#8ab4b0 38%,#78a09c 80%,#6e9898); }
+    .card-cover--07 { /* SmartHire: dark olive */
+      background: radial-gradient(ellipse at 72% 35%, rgba(80,122,48,.4) 0%, transparent 55%),
+                  linear-gradient(145deg,#2a3a14,#38481c 55%,#263614); }
+    .card-cover--08 { /* KörkortHub: pale ice blue */
+      background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,.62) 0%, transparent 65%),
+                  linear-gradient(155deg,#ccd8e8,#d8e4f2 40%,#cad6e6 80%,#c0cede); }
+    .card-cover--09 { /* KANKAN: soft lavender */
+      background: radial-gradient(ellipse at 50% 35%, rgba(222,212,242,.52) 0%, transparent 60%),
+                  linear-gradient(150deg,#b0a0c2,#c0b0d2 38%,#aea0c0 80%,#a898bc); }
+
+
     /* ─── TOUCH / MOBILE: hide desktop cursor ─────────── */
     @media (hover: none), (pointer: coarse) {
       .cursor, .cursor-ring { display: none !important; }
@@ -1115,6 +1198,19 @@
               <rect x="16" y="289" width="236" height="1.5" rx="1" fill="#3d5c3a"/>
               <text x="282" y="291.5" font-size="5" fill="rgba(194,201,176,.26)" font-family="monospace">90%</text>
             </svg>
+            
+            <div class="card-cover card-cover--07">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:72px;height:72px;right:.9rem;bottom:1rem;" viewBox="0 0 72 72" fill="none" aria-hidden="true">
+                <path d="M36 6 L62 21 L62 51 L36 66 L10 51 L10 21 Z" stroke="rgba(240,238,228,.15)" stroke-width="1"/>
+                <path d="M36 19 L53 28 L53 44 L36 53 L19 44 L19 28 Z" stroke="rgba(240,238,228,.09)" stroke-width=".8"/>
+              </svg>
+              <div class="cover-num">01</div>
+              <div class="cover-text">
+                <div class="cover-title">Hiring,<br>Redesigned.</div>
+                <div class="cover-sub">End-to-end recruitment — one system, no chaos.</div>
+              </div>
+            </div>
             <div class="project-overlay"></div>
             <div class="project-view"><span>View Project</span></div>
           </div>
@@ -1279,6 +1375,21 @@
               <rect x="16" y="281" width="199" height="1.5" rx="1" fill="#3d5c3a"/>
               <text x="282" y="283" font-size="5" fill="rgba(194,201,176,.26)" font-family="monospace">76%</text>
             </svg>
+            
+            <div class="card-cover card-cover--06">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:100px;height:110px;right:0;top:50%;transform:translateY(-50%);" viewBox="0 0 100 110" fill="none" aria-hidden="true">
+                <path d="M5,20 Q35,5 65,20 Q88,33 100,20" stroke="rgba(240,238,228,.22)" stroke-width="1.1"/>
+                <path d="M5,40 Q35,25 65,40 Q88,53 100,40" stroke="rgba(240,238,228,.16)" stroke-width="1.1"/>
+                <path d="M5,60 Q35,45 65,60 Q88,73 100,60" stroke="rgba(240,238,228,.11)" stroke-width="1"/>
+                <path d="M5,80 Q35,65 65,80 Q88,93 100,80" stroke="rgba(240,238,228,.07)" stroke-width="1"/>
+              </svg>
+              <div class="cover-num">02</div>
+              <div class="cover-text">
+                <div class="cover-title">Play Better.</div>
+                <div class="cover-sub">Project management built for game studios.</div>
+              </div>
+            </div>
             <div class="project-overlay"></div>
             <div class="project-view"><span>View Project</span></div>
           </div>
@@ -1300,6 +1411,20 @@
               Kanelär
               <span class="project-num">03</span>
               <img src="kanelar.jpg" alt="Kanelär" class="project-thumb-photo" />
+            </div>
+            
+            <div class="card-cover card-cover--04">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:178px;height:178px;right:-44px;bottom:-44px;" viewBox="0 0 178 178" fill="none" aria-hidden="true">
+                <circle cx="89" cy="89" r="50" stroke="rgba(22,18,12,.07)" stroke-width="1"/>
+                <circle cx="89" cy="89" r="72" stroke="rgba(22,18,12,.05)" stroke-width="1"/>
+                <circle cx="89" cy="89" r="94" stroke="rgba(22,18,12,.035)" stroke-width="1"/>
+              </svg>
+              <div class="cover-num">03</div>
+              <div class="cover-text">
+                <div class="cover-title">Kanel + lär.</div>
+                <div class="cover-sub">Save the word you just heard.</div>
+              </div>
             </div>
             <div class="project-overlay"></div>
             <div class="project-view dark-view"><span>View Project</span></div>
@@ -1323,6 +1448,22 @@
               <span class="project-num">04</span>
               <img src="3333.jpg" alt="Kaleido" class="project-thumb-photo" />
             </div>
+            
+            <div class="card-cover card-cover--01">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:72px;height:56px;right:1rem;bottom:1.3rem;" viewBox="0 0 72 56" fill="none" aria-hidden="true">
+                <rect x="1" y="1" width="70" height="54" rx="3" stroke="rgba(240,242,255,.28)" stroke-width="1"/>
+                <line x1="1" y1="12" x2="71" y2="12" stroke="rgba(240,242,255,.28)" stroke-width=".8"/>
+                <circle cx="7.5" cy="6.5" r="2" fill="rgba(240,242,255,.36)"/>
+                <circle cx="13.5" cy="6.5" r="2" fill="rgba(240,242,255,.24)"/>
+                <circle cx="19.5" cy="6.5" r="2" fill="rgba(240,242,255,.18)"/>
+              </svg>
+              <div class="cover-num">04</div>
+              <div class="cover-text">
+                <div class="cover-title">Color,<br>Multiplied.</div>
+                <div class="cover-sub">AI-powered product visuals for e-commerce.</div>
+              </div>
+            </div>
             <div class="project-overlay"></div>
             <div class="project-view dark-view"><span>View Project</span></div>
           </div>
@@ -1344,6 +1485,23 @@
               KANKAN
               <span class="project-num">05</span>
               <img src="68.avif" alt="KANKAN" class="project-thumb-photo" />
+            </div>
+            
+            <div class="card-cover card-cover--09">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:66px;height:66px;right:.9rem;top:.9rem;" viewBox="0 0 66 66" fill="none" aria-hidden="true">
+                <circle cx="33" cy="33" r="27" stroke="rgba(22,18,35,.18)" stroke-width=".9"/>
+                <line x1="33" y1="6" x2="33" y2="60" stroke="rgba(22,18,35,.18)" stroke-width=".9"/>
+                <line x1="6" y1="33" x2="60" y2="33" stroke="rgba(22,18,35,.18)" stroke-width=".9"/>
+                <line x1="14" y1="14" x2="52" y2="52" stroke="rgba(22,18,35,.10)" stroke-width=".7" stroke-dasharray="2 3"/>
+                <line x1="52" y1="14" x2="14" y2="52" stroke="rgba(22,18,35,.10)" stroke-width=".7" stroke-dasharray="2 3"/>
+                <circle cx="33" cy="33" r="4" fill="rgba(22,18,35,.16)"/>
+              </svg>
+              <div class="cover-num">05</div>
+              <div class="cover-text">
+                <div class="cover-title">Where will<br>you go?</div>
+                <div class="cover-sub">City selection for digital nomads.</div>
+              </div>
             </div>
             <div class="project-overlay"></div>
             <div class="project-view dark-view"><span>View Project</span></div>
@@ -1367,6 +1525,19 @@
               <span class="project-num">06</span>
               <img src="2222.jpg" alt="AI Learning Hub" class="project-thumb-photo" />
             </div>
+            
+            <div class="card-cover card-cover--05">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:208px;height:155px;right:-16px;top:0;" viewBox="0 0 208 155" fill="none" aria-hidden="true">
+                <path d="M208,0 Q146,60 86,104 Q46,130 0,142" stroke="rgba(240,238,228,.16)" stroke-width="1.1"/>
+                <path d="M208,30 Q152,86 98,124 Q62,146 16,155" stroke="rgba(240,238,228,.10)" stroke-width=".9"/>
+              </svg>
+              <div class="cover-num">06</div>
+              <div class="cover-text">
+                <div class="cover-title">More Human<br>Than Machine.</div>
+                <div class="cover-sub">The best AI resources, curated for you.</div>
+              </div>
+            </div>
             <div class="project-overlay"></div>
             <div class="project-view"><span>View Project ↗</span></div>
           </div>
@@ -1388,6 +1559,21 @@
               KörkortHub
               <span class="project-num">07</span>
               <img src="1111.jpg" alt="KörkortHub" class="project-thumb-photo" />
+            </div>
+            
+            <div class="card-cover card-cover--08">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:72px;height:60px;right:1rem;bottom:1.3rem;" viewBox="0 0 72 60" fill="none" aria-hidden="true">
+                <path d="M9,23 L21,23 L23,16 L33,16 L35,23 L63,23 L63,52 L9,52 Z" stroke="rgba(22,28,42,.2)" stroke-width="1" stroke-linejoin="round"/>
+                <circle cx="36" cy="37.5" r="10" stroke="rgba(22,28,42,.18)" stroke-width="1"/>
+                <circle cx="36" cy="37.5" r="5.8" stroke="rgba(22,28,42,.12)" stroke-width=".8"/>
+                <circle cx="57" cy="27" r="2.6" fill="rgba(22,28,42,.14)"/>
+              </svg>
+              <div class="cover-num">07</div>
+              <div class="cover-text">
+                <div class="cover-title">Drive Forward.</div>
+                <div class="cover-sub">Swedish driving licence, simplified.</div>
+              </div>
             </div>
             <div class="project-overlay"></div>
             <div class="project-view dark-view"><span>View Project ↗</span></div>
@@ -1412,6 +1598,20 @@
               <span class="project-num">08</span>
               <img src="kth1.jpg" alt="Sound-Assisted Climbing" class="project-thumb-photo" />
             </div>
+            
+            <div class="card-cover card-cover--03">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:124px;height:106px;right:-16px;top:-12px;" viewBox="0 0 124 106" fill="none" aria-hidden="true">
+                <circle cx="104" cy="15" r="27" stroke="rgba(240,238,228,.13)" stroke-width=".9" stroke-dasharray="2 4"/>
+                <circle cx="104" cy="15" r="51" stroke="rgba(240,238,228,.08)" stroke-width=".9" stroke-dasharray="2 4"/>
+                <circle cx="104" cy="15" r="75" stroke="rgba(240,238,228,.05)" stroke-width=".9" stroke-dasharray="2 4"/>
+              </svg>
+              <div class="cover-num">08</div>
+              <div class="cover-text">
+                <div class="cover-title" style="font-style:italic;">Design is<br>Never Neutral.</div>
+                <div class="cover-sub">Sonified real-time guidance for bouldering.</div>
+              </div>
+            </div>
             <div class="project-overlay"></div>
             <div class="project-view dark-view"><span>View Project</span></div>
           </div>
@@ -1434,6 +1634,21 @@
               Social Space VR
               <span class="project-num">09</span>
               <img src="kth3.jpg" alt="Social Space VR" class="project-thumb-photo" />
+            </div>
+            
+            <div class="card-cover card-cover--02">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:56px;height:82px;right:1.2rem;top:50%;transform:translateY(-50%);" viewBox="0 0 56 82" fill="none" aria-hidden="true">
+                <path d="M28,76 Q28,41 28,8" stroke="rgba(22,14,12,.17)" stroke-width="1.1" stroke-linecap="round"/>
+                <path d="M28,46 Q10,31 8,15 Q23,18 28,41" stroke="rgba(22,14,12,.13)" stroke-width=".9" fill="rgba(22,14,12,.04)"/>
+                <path d="M28,57 Q48,40 50,25 Q35,29 28,52" stroke="rgba(22,14,12,.11)" stroke-width=".9" fill="rgba(22,14,12,.03)"/>
+                <path d="M28,31 Q11,19 9,5 Q24,10 28,28" stroke="rgba(22,14,12,.09)" stroke-width=".9" fill="rgba(22,14,12,.03)"/>
+              </svg>
+              <div class="cover-num">09</div>
+              <div class="cover-text">
+                <div class="cover-title">Presence Shapes<br>Behavior.</div>
+                <div class="cover-sub">Can a virtual character change how people act?</div>
+              </div>
             </div>
             <div class="project-overlay"></div>
             <div class="project-view dark-view"><span>View Project</span></div>
