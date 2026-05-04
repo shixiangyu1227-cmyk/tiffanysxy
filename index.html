@@ -723,55 +723,37 @@
       padding: 0 .05rem; line-height: 1;
     }
 
-    /* ─── CARD COVER — Soft Glass × Neumorphism × Luminal Gradient ─ */
+    /* ─── CARD COVER — 弥散光 Diffused Light System ──────────────── */
     .card-cover {
       position: absolute; inset: 0;
       opacity: 1; pointer-events: none;
-      transition: opacity .6s var(--ease);
+      transition: opacity .65s var(--ease);
       overflow: hidden;
-      /* Real frosted glass — blurs project photo underneath */
-      backdrop-filter: blur(22px) saturate(170%) brightness(1.04);
-      -webkit-backdrop-filter: blur(22px) saturate(170%) brightness(1.04);
-      /* Neumorphic inset — glass pressed into the card */
-      box-shadow:
-        inset 2.5px 2.5px 9px rgba(255,255,255,.22),
-        inset -2px  -2px  7px rgba(0,0,0,.14);
     }
     .project-card:hover .card-cover { opacity: 0; }
 
-    /* Floating lift: thumbnail rises above text area */
+    /* Floating lift */
     .project-thumb {
       box-shadow:
-        0 1px 0 rgba(255,255,255,.78),
-        0 6px 28px rgba(0,0,0,.15),
-        0 2px 8px rgba(0,0,0,.09);
+        0 1px 0 rgba(255,255,255,.72),
+        0 5px 22px rgba(0,0,0,.12),
+        0 2px 7px rgba(0,0,0,.08);
       position: relative;
     }
 
-    /* Glass rim — bright top/left edge, dim bottom/right */
-    .card-cover::before {
-      content: '';
-      position: absolute; inset: 0;
-      border-top:   1px solid rgba(255,255,255,.36);
-      border-left:  1px solid rgba(255,255,255,.26);
-      border-right: 1px solid rgba(255,255,255,.10);
-      border-bottom:1px solid rgba(255,255,255,.10);
-      pointer-events: none;
-      z-index: 2;
-    }
-    .card-cover::after,
+    /* All pseudo-elements and decoration cleared */
+    .card-cover::before, .card-cover::after,
     .cover-inner::before, .cover-inner::after { display: none; }
     .cover-inner { position: absolute; inset: .72rem; }
 
-    /* Number — light serif, top-left */
+    /* Number — serif, top-left, whisper opacity */
     .cover-num {
       position: absolute; top: .78rem; left: .88rem;
       font-family: var(--font-ser);
       font-size: 1.15rem; font-weight: 400;
       letter-spacing: .04em; line-height: 1;
-      color: rgba(244,242,232,.52);
-      text-shadow: 0 1px 4px rgba(0,0,0,.18);
-      z-index: 3;
+      color: var(--num-color);
+      opacity: .50;
     }
 
     /* Title — large, centred */
@@ -780,122 +762,101 @@
       display: flex; flex-direction: column;
       align-items: center; justify-content: center;
       text-align: center; padding: 1.6rem;
-      z-index: 3;
     }
     .cover-title {
       font-family: var(--font-ser);
       font-size: 2.2rem; font-weight: 400;
       line-height: 1.08; letter-spacing: .01em;
-      color: rgba(244,242,232,.92);
-      text-shadow:
-        0 1px 0 rgba(255,255,255,.12),
-        0 2px 10px rgba(0,0,0,.24);
+      color: var(--title-color);
     }
     .cover-sub  { display: none; }
     .cover-deco { display: none; }
 
-    /* ── Tinted glass tints: warm yellow-green → cool blue-teal ──
-       RGB base shifts: R↓ (95→40), G≈steady (~112), B↑ (58→124)
-       Opacity: 0.42 → 0.34 (lighter glass as hue cools)         */
+    /* ── VARIATION A — Nocturne ────────────────────────────────────
+       Outer: deep Morandi forest #1D2B1A (cool, dark)
+       Center glow: warm chartreuse  rgb(202,222,128)
+       Cold dark outer ↔ warm luminous center
+       Text: light cream                                           */
+    .card-cover--07, .card-cover--01, .card-cover--08 {
+      --title-color: rgba(238,236,222,.90);
+      --num-color:   rgba(238,236,222,1);
+      background:
+        /* Primary soft-focus glow — warm chartreuse centre */
+        radial-gradient(ellipse 55% 62% at 50% 46%,
+          rgba(202,222,128,.72) 0%,
+          rgba(185,208,105,.50) 12%,
+          rgba(162,188,78,.28)  28%,
+          rgba(128,158,52,.10)  50%,
+          rgba(92,122,34,.03)   66%,
+          transparent           82%
+        ),
+        /* Secondary diffusion bloom — slightly offset */
+        radial-gradient(ellipse 80% 76% at 52% 50%,
+          rgba(178,205,95,.20)  0%,
+          rgba(140,170,62,.09)  38%,
+          rgba(90,130,38,.03)   60%,
+          transparent           78%
+        ),
+        /* Dark Morandi forest base */
+        linear-gradient(148deg, #1D2B1A, #232F1E 55%, #19261600);
+    }
 
-    /* Card 01 SmartHire  H≈88°  rgb(95,115,58) */
-    .card-cover--07 {
+    /* ── VARIATION B — Velvet Moss ─────────────────────────────────
+       Outer: warm Morandi olive  #586A44 (warm, mid)
+       Center glow: cool silver-mint  rgb(190,228,200)
+       Warm earthy outer ↔ cool luminous centre
+       Text: light cream                                           */
+    .card-cover--03, .card-cover--09, .card-cover--06 {
+      --title-color: rgba(238,236,222,.90);
+      --num-color:   rgba(238,236,222,1);
       background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.22) 0%,
-          rgba(255,255,255,.08) 35%,
-          transparent 56%,
-          rgba(0,0,0,.07) 100%),
-        radial-gradient(ellipse at 40% 28%, rgba(255,255,255,.18) 0%, transparent 60%),
-        rgba(95,115,58,.42);
+        /* Primary glow — cool silver-mint centre */
+        radial-gradient(ellipse 55% 62% at 50% 46%,
+          rgba(190,228,200,.68) 0%,
+          rgba(165,215,178,.46) 12%,
+          rgba(135,196,152,.24) 28%,
+          rgba(100,168,118,.09) 50%,
+          rgba(68,138,88,.03)   66%,
+          transparent           82%
+        ),
+        /* Secondary bloom */
+        radial-gradient(ellipse 78% 74% at 51% 48%,
+          rgba(172,218,185,.18) 0%,
+          rgba(125,180,140,.08) 40%,
+          rgba(80,142,98,.02)   62%,
+          transparent           78%
+        ),
+        /* Warm olive base */
+        linear-gradient(145deg, #566840, #5E724A 55%, #52643E);
     }
-    /* Card 02 GameFlow   H≈97°  rgb(82,115,65) */
-    .card-cover--03 {
+
+    /* ── VARIATION C — Morning Veil ─────────────────────────────────
+       Outer: pale cool Morandi sage  #B8C8AA
+       Center glow: warm ivory-cream  rgb(240,244,222)
+       Cool washed sage outer ↔ warm glowing ivory centre
+       Text: dark olive (light bg)                                */
+    .card-cover--04, .card-cover--05, .card-cover--02 {
+      --title-color: rgba(42,56,30,.80);
+      --num-color:   rgba(42,56,30,1);
       background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.20) 0%,
-          rgba(255,255,255,.07) 35%,
-          transparent 56%,
-          rgba(0,0,0,.07) 100%),
-        radial-gradient(ellipse at 44% 30%, rgba(255,255,255,.16) 0%, transparent 60%),
-        rgba(82,115,65,.40);
-    }
-    /* Card 03 Kanelär    H≈106° rgb(68,115,72) */
-    .card-cover--04 {
-      background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.20) 0%,
-          rgba(255,255,255,.07) 35%,
-          transparent 56%,
-          rgba(0,0,0,.07) 100%),
-        radial-gradient(ellipse at 42% 30%, rgba(255,255,255,.15) 0%, transparent 60%),
-        rgba(68,115,72,.40);
-    }
-    /* Card 04 Kaleido    H≈116° rgb(56,114,80) */
-    .card-cover--01 {
-      background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.19) 0%,
-          rgba(255,255,255,.06) 35%,
-          transparent 56%,
-          rgba(0,0,0,.06) 100%),
-        radial-gradient(ellipse at 46% 30%, rgba(255,255,255,.15) 0%, transparent 60%),
-        rgba(56,114,80,.38);
-    }
-    /* Card 05 KANKAN     H≈125° rgb(48,114,90) */
-    .card-cover--09 {
-      background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.18) 0%,
-          rgba(255,255,255,.06) 35%,
-          transparent 56%,
-          rgba(0,0,0,.06) 100%),
-        radial-gradient(ellipse at 44% 30%, rgba(255,255,255,.14) 0%, transparent 60%),
-        rgba(48,114,90,.38);
-    }
-    /* Card 06 AIHub      H≈134° rgb(44,113,100) */
-    .card-cover--05 {
-      background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.17) 0%,
-          rgba(255,255,255,.06) 35%,
-          transparent 56%,
-          rgba(0,0,0,.06) 100%),
-        radial-gradient(ellipse at 42% 30%, rgba(255,255,255,.14) 0%, transparent 60%),
-        rgba(44,113,100,.37);
-    }
-    /* Card 07 KörkortHub H≈143° rgb(42,112,110) */
-    .card-cover--08 {
-      background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.17) 0%,
-          rgba(255,255,255,.05) 35%,
-          transparent 56%,
-          rgba(0,0,0,.06) 100%),
-        radial-gradient(ellipse at 40% 30%, rgba(255,255,255,.13) 0%, transparent 60%),
-        rgba(42,112,110,.36);
-    }
-    /* Card 08 SoundClimb H≈152° rgb(40,112,118) */
-    .card-cover--06 {
-      background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.16) 0%,
-          rgba(255,255,255,.05) 35%,
-          transparent 56%,
-          rgba(0,0,0,.05) 100%),
-        radial-gradient(ellipse at 44% 28%, rgba(255,255,255,.13) 0%, transparent 60%),
-        rgba(40,112,118,.35);
-    }
-    /* Card 09 Social VR  H≈162° rgb(38,110,126) */
-    .card-cover--02 {
-      background:
-        linear-gradient(138deg,
-          rgba(255,255,255,.15) 0%,
-          rgba(255,255,255,.05) 35%,
-          transparent 56%,
-          rgba(0,0,0,.05) 100%),
-        radial-gradient(ellipse at 46% 30%, rgba(255,255,255,.12) 0%, transparent 60%),
-        rgba(38,110,126,.34);
+        /* Primary glow — warm ivory-cream centre */
+        radial-gradient(ellipse 55% 62% at 50% 46%,
+          rgba(240,244,222,.85) 0%,
+          rgba(225,234,200,.62) 12%,
+          rgba(205,218,172,.34) 28%,
+          rgba(180,198,142,.14) 50%,
+          rgba(155,176,112,.04) 66%,
+          transparent           82%
+        ),
+        /* Secondary diffusion */
+        radial-gradient(ellipse 76% 72% at 50% 48%,
+          rgba(230,238,208,.38) 0%,
+          rgba(200,214,170,.16) 40%,
+          rgba(168,186,132,.04) 62%,
+          transparent           76%
+        ),
+        /* Pale Morandi sage base */
+        linear-gradient(152deg, #B6C6A8, #C2D0B2 50%, #B2C4A4);
     }
 
     /* ─── TOUCH / MOBILE: hide desktop cursor ─────────── */
