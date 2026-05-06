@@ -792,6 +792,21 @@
       background: url('03cover.jpg') center/cover no-repeat;
     }
 
+    /* ─── MOBILE HERO BACKGROUND FIX ────────────────────────────────
+       SVG feGaussianBlur(38) + feTurbulence/feDisplacementMap exceed
+       mobile GPU budget → blank render. Replace with CSS gradients.    */
+    @media (max-width: 768px) {
+      .hero-flowers { display: none; }
+      .hero {
+        background:
+          radial-gradient(ellipse 130% 90% at 15% 20%, rgba(162,175,140,.72) 0%, transparent 52%),
+          radial-gradient(ellipse 110% 80% at 85% 70%, rgba(176,188,156,.60) 0%, transparent 52%),
+          radial-gradient(ellipse 100% 70% at 50% 95%, rgba(152,166,130,.48) 0%, transparent 50%),
+          radial-gradient(ellipse 90%  60% at 60% 10%, rgba(184,196,164,.45) 0%, transparent 48%),
+          #c2c9b0;
+      }
+    }
+
     /* ─── TOUCH / MOBILE: hide desktop cursor ─────────── */
     @media (hover: none), (pointer: coarse) {
       .cursor, .cursor-ring { display: none !important; }
