@@ -766,44 +766,25 @@
     .cover-sub  { display: none; }
     .cover-deco { display: none; }
 
-    /* ── A  Sky × Amber ────────────────────────────────────────────
-       Outer: powder blue    #B5D5E0
-       Core:  warm amber     rgb(242,185,58)  — brighter than outer
-       Glow radiates centre→edge, getting lighter                  */
-    .card-cover--04, .card-cover--09, .card-cover--08 {
-      --title-color: rgba(32,54,68,.80);
-      --num-color:   rgba(32,54,68,1);
-      background: url('cover_a.jpg') center/cover no-repeat;
+    /* ── 01cover — cards 01 04 07 ───────────────────────────────── */
+    .card-cover--07, .card-cover--01, .card-cover--08 {
+      --title-color: rgba(28,42,68,.82);
+      --num-color:   rgba(28,42,68,1);
+      background: url('cover01.jpg') center/cover no-repeat;
     }
 
-    /* ── B  Lavender × Coral ───────────────────────────────────────
-       Outer: soft lavender  #BDB8CC
-       Core:  coral-salmon   rgb(235,125,108) — brighter than outer
-       Glow radiates centre→edge, getting lighter                  */
-    .card-cover--03 {
-      --title-color: rgba(36,52,28,.82);
-      --num-color:   rgba(36,52,28,1);
-      background: url('cover_b1.jpg') center/cover no-repeat;
-    }
-    .card-cover--01 {
-      --title-color: rgba(36,52,28,.82);
-      --num-color:   rgba(36,52,28,1);
-      background: url('cover_b2.jpg') center/cover no-repeat;
-    }
-    .card-cover--02 {
-      --title-color: rgba(36,52,28,.82);
-      --num-color:   rgba(36,52,28,1);
-      background: url('cover_b3.jpg') center/cover no-repeat;
+    /* ── 02cover — cards 02 05 08 ───────────────────────────────── */
+    .card-cover--03, .card-cover--05, .card-cover--06 {
+      --title-color: rgba(68,40,32,.82);
+      --num-color:   rgba(68,40,32,1);
+      background: url('cover02.jpg') center/cover no-repeat;
     }
 
-    /* ── C  Sage × Forest ──────────────────────────────────────────
-       Outer: pale sage-olive  #BCBF96
-       Core:  deep forest      rgb(95,118,44)  — DARKER than outer
-       Glow positioned lower (at 50% 58%), core darkens downward   */
-    .card-cover--07, .card-cover--05, .card-cover--06 {
-      --title-color: rgba(40,52,20,.80);
-      --num-color:   rgba(40,52,20,1);
-      background: url('cover_c.jpg') center/cover no-repeat;
+    /* ── 03cover — cards 03 06 09 ───────────────────────────────── */
+    .card-cover--04, .card-cover--09, .card-cover--02 {
+      --title-color: rgba(232,242,228,.90);
+      --num-color:   rgba(232,242,228,1);
+      background: url('cover03.jpg') center/cover no-repeat;
     }
 
     /* ─── TOUCH / MOBILE: hide desktop cursor ─────────── */
@@ -1477,6 +1458,41 @@
       </article>
 
       <!-- 5th card: KANKAN -->
+      <article class="project-card" data-category="build">
+        <a href="https://tiffanyaihub.lovable.app" target="_blank" style="display:block;cursor:none;">
+        <div class="project-card-inner">
+          <div class="project-thumb">
+            <div class="project-thumb-bg">
+              AI Hub
+              <span class="project-num">06</span>
+              <img src="2222.jpg" alt="AI Learning Hub" class="project-thumb-photo" />
+            </div>
+            
+            <div class="card-cover card-cover--05">
+              <div class="cover-inner"></div>
+              <svg class="cover-deco" style="width:208px;height:155px;right:-16px;top:0;" viewBox="0 0 208 155" fill="none" aria-hidden="true">
+                <path d="M208,0 Q146,60 86,104 Q46,130 0,142" stroke="rgba(240,238,228,.16)" stroke-width="1.1"/>
+                <path d="M208,30 Q152,86 98,124 Q62,146 16,155" stroke="rgba(240,238,228,.10)" stroke-width=".9"/>
+              </svg>
+              <div class="cover-num">06</div>
+              <div class="cover-text">
+                <div class="cover-title">AIHub</div>
+                <div class="cover-sub">The best AI resources, curated for you.</div>
+              </div>
+            </div>
+            <div class="project-overlay"></div>
+            <div class="project-view"><span>View Project ↗</span></div>
+          </div>
+          <div class="project-info">
+            <div class="project-tags"><span class="project-meta">VIBE CODING</span><span class="project-meta">Interactive website</span></div>
+            <div class="project-title">AI Learning Hub</div>
+            <div class="project-desc">A curated collection of the best AI resources to help you stay ahead.</div>
+          </div>
+        </div>
+        </a>
+      </article>
+
+      <!-- 6th card: AI Learning Hub -->
       <article class="project-card" data-category="design">
         <a href="kankan.html" style="display:block;cursor:none;">
         <div class="project-card-inner">
@@ -1510,41 +1526,6 @@
             <div class="project-tags"><span class="project-meta">UX Design</span><span class="project-meta">@KTH</span></div>
             <div class="project-title">KANKAN</div>
             <div class="project-desc">A City Selection and Life Planning Tool for Chinese Digital Nomads.</div>
-          </div>
-        </div>
-        </a>
-      </article>
-
-      <!-- 6th card: AI Learning Hub -->
-      <article class="project-card" data-category="build">
-        <a href="https://tiffanyaihub.lovable.app" target="_blank" style="display:block;cursor:none;">
-        <div class="project-card-inner">
-          <div class="project-thumb">
-            <div class="project-thumb-bg">
-              AI Hub
-              <span class="project-num">06</span>
-              <img src="2222.jpg" alt="AI Learning Hub" class="project-thumb-photo" />
-            </div>
-            
-            <div class="card-cover card-cover--05">
-              <div class="cover-inner"></div>
-              <svg class="cover-deco" style="width:208px;height:155px;right:-16px;top:0;" viewBox="0 0 208 155" fill="none" aria-hidden="true">
-                <path d="M208,0 Q146,60 86,104 Q46,130 0,142" stroke="rgba(240,238,228,.16)" stroke-width="1.1"/>
-                <path d="M208,30 Q152,86 98,124 Q62,146 16,155" stroke="rgba(240,238,228,.10)" stroke-width=".9"/>
-              </svg>
-              <div class="cover-num">06</div>
-              <div class="cover-text">
-                <div class="cover-title">AIHub</div>
-                <div class="cover-sub">The best AI resources, curated for you.</div>
-              </div>
-            </div>
-            <div class="project-overlay"></div>
-            <div class="project-view"><span>View Project ↗</span></div>
-          </div>
-          <div class="project-info">
-            <div class="project-tags"><span class="project-meta">VIBE CODING</span><span class="project-meta">Interactive website</span></div>
-            <div class="project-title">AI Learning Hub</div>
-            <div class="project-desc">A curated collection of the best AI resources to help you stay ahead.</div>
           </div>
         </div>
         </a>
