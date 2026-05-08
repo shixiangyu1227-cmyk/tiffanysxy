@@ -874,23 +874,23 @@
   <div class="wrap">
     <section class="module reveal">
       <div class="mod-num">Solution 01 / 03</div>
-      <h3>Requirement Tracking</h3>
+      <h3>Requirement Tracking: Making Changes Transparent and Traceable</h3>
       <div class="mod-tagline">Make every change visible</div>
 
       <div class="ps-grid">
         <div class="ps-block prob-block">
-          <div class="ps-label prob"><span class="dot prob"></span>The scenario</div>
-          <p>A requirement comes in from player feedback, gets prioritized by the producer, assigned to a planner, handed off to engineering, then to QA. At any point, it might change. The old process had no way to track what changed, when, or by whom.</p>
+          <div class="ps-label prob"><span class="dot prob"></span>The Scenario</div>
+          <p>A requirement travels through multiple departments before it's implemented. In the past, mid-stream changes often left downstream teams in the dark, leading to wasted development effort.</p>
         </div>
         <div class="ps-block sol-block">
-          <div class="ps-label sol"><span class="dot sol"></span>Design Solution</div>
-          <p>I designed a unified Requirement Pool where all incoming requests are collected and tagged by source and category. Each requirement has customizable workflow states, and when it moves to a new stage, the responsible person updates automatically and gets notified. A full change log records every modification, so when something changes midstream, anyone can trace back to what happened.</p>
+          <div class="ps-label sol"><span class="dot sol"></span>My Contribution</div>
+          <p>I deeply participated in mapping the business workflows and assisted the PM in building a "Unified Requirement Pool." I took ownership of the full change log's interaction design, ensuring that any status update automatically triggers a notification to the owner. This ensures that no matter how many times a spec changes, any newcomer can immediately understand the context and history.</p>
         </div>
       </div>
 
       <div class="detail-box">
-        <h5>Why This Approach</h5>
-        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">We considered a simpler linear tracker, but game production requirements don't follow a straight line — they branch, get deprioritized, and resurface. The tagging and filtering system was designed so that different roles could look at the same pool but see what mattered to them.</p>
+        <h5>Design Thinking</h5>
+        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">Game development is iterative, not linear. By designing a robust tagging and filtering system, I enabled different roles to work from the same pool while focusing only on the information relevant to them.</p>
       </div>
 
       <div class="img-zoom reveal-img">
@@ -904,23 +904,23 @@
   <div class="wrap">
     <section class="module reveal">
       <div class="mod-num">Solution 02 / 03</div>
-      <h3>Cross-Team Collaboration</h3>
+      <h3>Cross-Team Collaboration: Breaking Down Information Silos</h3>
       <div class="mod-tagline">One view of the work, shared across every team</div>
 
       <div class="ps-grid">
         <div class="ps-block prob-block">
-          <div class="ps-label prob"><span class="dot prob"></span>The scenario</div>
-          <p>The Art Center serves multiple game titles simultaneously. A lead artist needs to know what's on their team's plate across all projects. A producer needs to see how engineering, art, and QA are tracking against the same milestone, without messaging five people.</p>
+          <div class="ps-label prob"><span class="dot prob"></span>The Scenario</div>
+          <p>The Art Center supports multiple projects simultaneously, making it hard for leads to track member bandwidth; meanwhile, Producers had to check in with every group lead manually to see the big picture.</p>
         </div>
         <div class="ps-block sol-block">
-          <div class="ps-label sol"><span class="dot sol"></span>Design Solution</div>
-          <p>I designed a unified production pipeline view that connects all roles into one workflow: requirement → development → testing → release. The project structure uses custom attribute fields (e.g., "Game Title," "Platform") so managers can filter by department, game, or resource allocation. Power users can save preset filter views and toggle between them with one click, instead of reconfiguring every time.</p>
+          <div class="ps-label sol"><span class="dot sol"></span>My Contribution</div>
+          <p>I produced a cross-departmental collaboration blueprint through extensive research and assisted the PM in connecting requirements, development, testing, and release into a "Unified Production Pipeline." I specifically focused on designing the multi-dimensional filter panel, allowing managers to toggle between "Project" and "Department" views to instantly grab the data they need.</p>
         </div>
       </div>
 
       <div class="detail-box">
-        <h5>Why This Approach</h5>
-        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">The temptation was to build separate dashboards for each department. But the core problem was fragmentation — adding more views would have made it worse. The design bet was: one shared pipeline, with flexible filtering, so everyone sees the same source of truth through their own lens.</p>
+        <h5>Design Thinking</h5>
+        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">Fragmentation stems from disconnected tools. Instead of creating separate sheets for each department, my strategy was to create one flexible system where everyone works from a single "Source of Truth."</p>
       </div>
 
       <div class="img-zoom reveal-img">
@@ -934,23 +934,23 @@
   <div class="wrap">
     <section class="module reveal">
       <div class="mod-num">Solution 03 / 03</div>
-      <h3>Progress Tracking</h3>
+      <h3>Progress Tracking: Identifying Risks Before They Escalate</h3>
       <div class="mod-tagline">Spot delays before they cascade</div>
 
       <div class="ps-grid">
         <div class="ps-block prob-block">
-          <div class="ps-label prob"><span class="dot prob"></span>The scenario</div>
-          <p>A version is due in six weeks. The producer sees tasks are being completed, but can't tell if the remaining work is on pace. Two weeks before release, three critical tasks surface as blocked, and it's too late to adjust scope.</p>
+          <div class="ps-label prob"><span class="dot prob"></span>The Scenario</div>
+          <p>As the launch date approaches, Producers need to know if the remaining work can be finished on time, rather than discovering a delay on the day of the deadline.</p>
         </div>
         <div class="ps-block sol-block">
-          <div class="ps-label sol"><span class="dot sol"></span>Design Solution</div>
-          <p>I designed an iteration planning framework aligned with game production phases: Prototype → Alpha → Beta → Live Ops. Each phase has defined milestones and estimated effort. Interactive Gantt charts show cross-team timelines, and burndown charts give real-time progress visibility. Early warning indicators flag deadline risks before they cascade.</p>
+          <div class="ps-label sol"><span class="dot sol"></span>My Contribution</div>
+          <p>I assisted the PM in introducing Gantt and Burndown charts and took charge of the visual logic for risk warnings. When progress falls behind, the system automatically flags it in red. Furthermore, I proposed a "Task Count vs. Effort Hours" dual-axis toggle to balance the different priorities of PMs and Tech Leads.</p>
         </div>
       </div>
 
       <div class="detail-box">
-        <h5>A Key Design Trade-off</h5>
-        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">The burndown chart y-axis can toggle between task count and effort hours. This sounds small, but it mattered: a PM looks at task count to gauge "how many things are left." A tech lead looks at effort hours to gauge "how many person-days we still need." A 2-week task and a 2-hour task shouldn't carry equal visual weight. Supporting both views in one chart meant both roles could use the same tool without talking past each other.</p>
+        <h5>Key Trade-off</h5>
+        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">While PMs care about "how many items are left," Tech Leads care about "how many person-days are required." This dual-view design ensures both parties are communicating on the same wavelength, reducing misunderstandings.</p>
       </div>
 
       <div class="img-zoom reveal-img">
