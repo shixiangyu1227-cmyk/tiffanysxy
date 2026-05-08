@@ -225,31 +225,31 @@
     .card.ctx-blue .ctx-num { color: var(--blue); }
 
     /* Pain point cards — horizontal rows */
-    .pain-rows { display: flex; flex-direction: column; gap: 0; margin-top: 1.8rem; }
+    .pain-rows { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 1.8rem; }
     .pain-row {
       display: grid; grid-template-columns: 280px 1fr;
       background: var(--bg-light);
       border: 1px solid var(--line);
-      border-bottom: none;
+      border-radius: 4px;
       transition: box-shadow .28s var(--ease), border-color .25s;
     }
-    .pain-row:last-child { border-bottom: 1px solid var(--line); }
     .pain-row.pr-red   { border-left: 3px solid var(--red); }
     .pain-row.pr-green { border-left: 3px solid var(--accent); }
     .pain-row.pr-blue  { border-left: 3px solid var(--blue); }
     .pain-row:hover { box-shadow: 0 4px 20px rgba(58,74,46,.08); z-index: 1; position: relative; }
     .pain-row-left {
-      padding: 1.6rem 1.8rem;
+      padding: 2rem 1.8rem;
       border-right: 1px solid var(--line);
       display: flex; flex-direction: column; gap: .6rem;
       justify-content: center;
       background: rgba(240,238,230,.55);
     }
     .pain-row-right {
-      padding: 1.6rem 2rem;
-      display: flex; align-items: center;
+      padding: 2rem 2.2rem;
+      display: flex; flex-direction: column; justify-content: center; gap: .55rem;
     }
     .pain-row-right p { font-size: .88rem; color: var(--ink-muted); line-height: 1.85; margin: 0; }
+    .pain-row-right p:first-child { font-size: .9rem; color: var(--ink); margin-bottom: .2rem; }
     .pain-badge {
       display: inline-flex; align-items: center;
       font-family: var(--font-mon); font-size: .52rem;
