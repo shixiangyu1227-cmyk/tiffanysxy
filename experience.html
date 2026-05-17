@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -27,7 +27,7 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; font-size: 19px; }
+    html { scroll-behavior: smooth; font-size: 22px; }
     body {
       background-color: var(--bg);
       color: var(--ink);
@@ -228,7 +228,7 @@
       background: var(--ink);
       color: rgba(194,201,176,.25); padding: 2rem 3rem;
       border-top: 1px solid rgba(194,201,176,.06);
-      display: flex; justify-content: flex-end; align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
       font-size: .82rem; font-family: var(--font-mon); letter-spacing: .1em;
     }
     .footer-links { display: flex; gap: 2rem; }
@@ -241,7 +241,7 @@
       .page-header { padding: 8rem 2rem 2rem; }
     }
     @media (max-width: 768px) {
-      html { font-size: 16px; }
+      html { font-size: 19px; }
       nav { padding: 1.2rem 1.5rem; }
       .nav-pill { display: none; }
       .nav-cta { margin-left: 0; }
@@ -258,7 +258,7 @@
       footer { flex-direction: column; gap: 1rem; text-align: center; justify-content: center; }
     }
     @media (max-width: 480px) {
-      html { font-size: 15px; }
+      html { font-size: 18px; }
       .page-header { padding: 6.5rem 1.2rem 1.5rem; }
       .exp-page { padding: 1.5rem 1.2rem 3rem; }
       .exp-company { font-size: 1.2rem; }
@@ -459,11 +459,7 @@
 
   <!-- Footer -->
   <footer>
-    <div class="footer-links">
-      <a href="https://www.linkedin.com/in/xiangyu-shi99/" target="_blank">LinkedIn</a>
-      <a href="https://canva.link/x6tbbnwvl6g3t8y" target="_blank">Resume ↗</a>
-      <a href="mailto:tiffanysxy@outlook.com">tiffanysxy@outlook.com</a>
-    </div>
+    <span>© 2026 Xiangyu Shi</span>
   </footer>
 
   <script>

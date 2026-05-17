@@ -1,0 +1,603 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Xiangyu Shi — UX / Product Designer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:        #c2c9b0;
+      --bg-card:   #d4dbc5;
+      --bg-light:  #f0eee6;
+      --ink:       #1a1a18;
+      --ink-muted: #4a5a3e;
+      --accent:    #3d5c3a;
+      --accent-lt: #8a9870;
+      --line:      rgba(58,74,46,0.18);
+      --white:     #f0eee6;
+      --font-ser:  'Cormorant Garamond', Georgia, serif;
+      --font-san:  'DM Sans', system-ui, sans-serif;
+      --font-mon:  'DM Mono', monospace;
+      --ease:      cubic-bezier(.25,.46,.45,.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; overflow: hidden; font-size: 20px; }
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-san);
+      cursor: none;
+    }
+
+    /* ─── CURSOR ─────────────────────────────────── */
+    .cursor {
+      position: fixed; z-index: 9999;
+      width: 8px; height: 8px;
+      background: var(--ink); border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: transform .12s var(--ease), background .2s;
+    }
+    .cursor-ring {
+      position: fixed; z-index: 9998;
+      width: 36px; height: 36px;
+      border: 1px solid var(--accent); border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%,-50%);
+      transition: transform .35s var(--ease), width .3s, height .3s;
+    }
+    body:has(a:hover) .cursor { background: var(--accent); }
+    body:has(a:hover) .cursor-ring { width: 52px; height: 52px; }
+
+    /* ─── KEYFRAMES ──────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes slideRight-a {
+      from { opacity: 0; transform: translateX(48px) rotate(-1.8deg); }
+      to   { opacity: 1; transform: translateX(0)    rotate(-1.8deg); }
+    }
+    @keyframes slideRight-b {
+      from { opacity: 0; transform: translateX(48px) rotate(1.6deg); }
+      to   { opacity: 1; transform: translateX(0)    rotate(1.6deg); }
+    }
+    @keyframes slideRight-c {
+      from { opacity: 0; transform: translateX(48px) rotate(-4deg); }
+      to   { opacity: 1; transform: translateX(0)    rotate(-4deg); }
+    }
+    @keyframes slideRight-d {
+      from { opacity: 0; transform: translateX(48px) rotate(2.2deg); }
+      to   { opacity: 1; transform: translateX(0)    rotate(2.2deg); }
+    }
+    @keyframes drift {
+      0%, 100% { transform: translate(0, 0); }
+      50%      { transform: translate(-6px, -10px); }
+    }
+
+    /* ─── LAYOUT ─────────────────────────────────── */
+    .cover {
+      display: grid;
+      grid-template-columns: 42% 58%;
+      height: 100vh;
+      position: relative;
+    }
+
+    /* ─── AMBIENT GLOW (left panel bg) ────────────── */
+    .cover-left {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3.5rem 3rem 3.5rem 3.8rem;
+      z-index: 10;
+    }
+    .cover-left::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 70% at 15% 30%, rgba(184,196,162,.55) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(162,175,140,.40) 0%, transparent 55%);
+      pointer-events: none;
+    }
+
+    /* ─── LEFT CONTENT ───────────────────────────── */
+    .cover-eyebrow {
+      font-family: var(--font-mon);
+      font-size: .72rem; letter-spacing: .22em;
+      text-transform: uppercase; color: var(--accent);
+      display: flex; align-items: center; gap: .7rem;
+      margin-bottom: 2.2rem;
+      opacity: 0; animation: fadeUp .7s var(--ease) .1s forwards;
+    }
+    .cover-eyebrow::before {
+      content: '';
+      display: block; width: 28px; height: 1px;
+      background: var(--accent); flex-shrink: 0;
+    }
+
+    .cover-name {
+      font-family: var(--font-ser);
+      font-size: clamp(3rem, 5.8vw, 5.8rem);
+      font-weight: 400; line-height: .97;
+      letter-spacing: -.02em;
+      margin-bottom: .6rem;
+      overflow: visible;
+    }
+    .cover-name-line {
+      display: block;
+      opacity: 0; transform: translateY(30px);
+      animation: fadeUp .9s var(--ease) forwards;
+    }
+    .cover-name-line:nth-child(1) { animation-delay: .28s; }
+    .cover-name-line:nth-child(2) {
+      animation-delay: .44s;
+      font-style: italic; color: var(--accent);
+    }
+
+    .cover-role {
+      font-family: var(--font-san);
+      font-size: 1rem; font-weight: 400;
+      color: var(--ink-muted); letter-spacing: .04em;
+      margin-bottom: 2rem;
+      opacity: 0; animation: fadeUp .8s var(--ease) .65s forwards;
+    }
+
+    .cover-divider {
+      width: 48px; height: 1px;
+      background: rgba(61,92,58,.3);
+      margin-bottom: 1.8rem;
+      opacity: 0; animation: fadeUp .6s var(--ease) .75s forwards;
+    }
+
+    .cover-bio {
+      font-size: .95rem; font-weight: 400;
+      color: var(--ink-muted); line-height: 1.75;
+      max-width: 34ch;
+      margin-bottom: 2.2rem;
+      opacity: 0; animation: fadeUp .8s var(--ease) .85s forwards;
+    }
+    .cover-bio em {
+      font-style: italic; color: var(--ink);
+    }
+
+    /* Stats row */
+    .cover-stats {
+      display: flex; gap: 2rem;
+      margin-bottom: 2.8rem;
+      opacity: 0; animation: fadeUp .7s var(--ease) 1.0s forwards;
+    }
+    .stat-item {}
+    .stat-num {
+      font-family: var(--font-ser);
+      font-size: 2.2rem; font-weight: 400;
+      line-height: 1; color: var(--accent);
+      letter-spacing: -.02em;
+    }
+    .stat-label {
+      font-family: var(--font-mon);
+      font-size: .65rem; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--ink-muted);
+      margin-top: .2rem;
+    }
+
+    /* CTA */
+    .cover-cta {
+      display: inline-flex; align-items: center; gap: .7rem;
+      opacity: 0; animation: fadeUp .7s var(--ease) 1.15s forwards;
+    }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      padding: .8rem 2rem;
+      background: var(--ink); color: var(--white);
+      font-family: var(--font-mon); font-size: .72rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      border: none; border-radius: 100px;
+      cursor: none; text-decoration: none;
+      transition: background .3s, transform .2s var(--ease),
+                  box-shadow .3s;
+      box-shadow: 0 4px 20px rgba(26,26,24,.18);
+    }
+    .cta-btn:hover {
+      background: var(--accent);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(61,92,58,.28);
+    }
+    .cta-btn svg { transition: transform .25s var(--ease); }
+    .cta-btn:hover svg { transform: translateX(3px); }
+
+    .cta-sub {
+      font-family: var(--font-mon); font-size: .65rem;
+      letter-spacing: .1em; text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    /* Logo mark (top-left) */
+    .cover-logo {
+      position: absolute; top: 2rem; left: 3.8rem;
+      opacity: 0; animation: fadeUp .6s var(--ease) 0s forwards;
+    }
+
+    /* ─── RIGHT PANEL ────────────────────────────── */
+    .cover-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle ambient glow */
+    .cover-right::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 65% at 70% 35%, rgba(176,188,158,.48) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 50% at 20% 75%, rgba(152,166,130,.35) 0%, transparent 55%);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* ─── BROWSER MOCKUP ─────────────────────────── */
+    .browser {
+      position: absolute;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 2px 0  rgba(255,255,255,.6) inset,
+        0 32px 80px rgba(26,26,24,.28),
+        0 8px 24px rgba(26,26,24,.14);
+      background: #fff;
+    }
+    .browser-chrome {
+      height: 30px;
+      background: #e8e5dd;
+      display: flex; align-items: center;
+      padding: 0 10px; gap: 5px;
+      border-bottom: 1px solid rgba(0,0,0,.09);
+      flex-shrink: 0;
+    }
+    .b-dot {
+      width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0;
+    }
+    .b-dot-r { background: #ff5f57; }
+    .b-dot-y { background: #febc2e; }
+    .b-dot-g { background: #28c840; }
+    .b-url {
+      flex: 1; margin: 0 10px;
+      height: 17px; border-radius: 4px;
+      background: rgba(0,0,0,.1);
+      display: flex; align-items: center;
+      padding: 0 8px;
+      font-family: var(--font-mon); font-size: .52rem;
+      color: rgba(0,0,0,.4); letter-spacing: .02em;
+      overflow: hidden; white-space: nowrap;
+    }
+    .browser-screen {
+      width: 100%; display: block;
+      object-fit: cover; object-position: top center;
+      flex: 1;
+    }
+
+    /* ─── PHONE MOCKUP ───────────────────────────── */
+    .phone {
+      position: absolute;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow:
+        0 24px 60px rgba(26,26,24,.30),
+        0 6px 18px rgba(26,26,24,.14),
+        0 0 0 8px rgba(220,218,210,.8),
+        0 0 0 9px rgba(200,198,188,.5);
+      background: var(--bg-light);
+    }
+    .phone-notch {
+      height: 22px;
+      background: #1a1a18;
+      display: flex; align-items: center;
+      justify-content: center;
+    }
+    .phone-notch-pill {
+      width: 60px; height: 11px;
+      background: #2a2a28; border-radius: 100px;
+    }
+    .phone-screen {
+      width: 100%; display: block;
+      object-fit: cover; object-position: top;
+    }
+
+    /* ─── INDIVIDUAL MOCKUP POSITIONS ────────────── */
+
+    /* Main browser — Kaleido (K1.webp) */
+    .mock-kaleido {
+      width: min(56%, 500px);
+      top: 8%;
+      left: 8%;
+      z-index: 3;
+      animation: slideRight-a .9s var(--ease) .55s both;
+    }
+    .mock-kaleido .browser-screen {
+      height: min(22vw, 210px);
+    }
+
+    /* Secondary browser — GameFlow Kanban (seasun/1.jpg) */
+    .mock-gameflow {
+      width: min(50%, 440px);
+      top: 5%;
+      right: 3%;
+      z-index: 4;
+      animation: slideRight-b .9s var(--ease) .72s both;
+    }
+    .mock-gameflow .browser-screen {
+      height: min(19vw, 185px);
+    }
+
+    /* Phone — Kanelär (kan.png) */
+    .mock-kanelar {
+      width: min(13%, 110px);
+      top: 52%;
+      left: 12%;
+      z-index: 5;
+      animation: slideRight-c .85s var(--ease) .9s both;
+    }
+    .mock-kanelar .phone-screen {
+      height: min(20vw, 175px);
+    }
+
+    /* Tertiary browser — GameFlow chart (seasun/3.jpg) */
+    .mock-chart {
+      width: min(44%, 390px);
+      bottom: 6%;
+      right: 5%;
+      z-index: 2;
+      animation: slideRight-d .9s var(--ease) 1.0s both;
+    }
+    .mock-chart .browser-screen {
+      height: min(16vw, 155px);
+    }
+
+    /* Small floating tag — project count */
+    .mock-tag {
+      position: absolute;
+      bottom: 14%;
+      left: 5%;
+      background: rgba(240,238,230,.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(58,74,46,.14);
+      border-radius: 100px;
+      padding: .6rem 1.2rem;
+      font-family: var(--font-mon); font-size: .62rem;
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--ink-muted);
+      z-index: 6;
+      display: flex; align-items: center; gap: .55rem;
+      opacity: 0; animation: fadeUp .7s var(--ease) 1.3s forwards;
+    }
+    .mock-tag-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+      animation: drift 3s ease-in-out infinite;
+    }
+
+    /* ─── DECORATIVE GRID LINES ──────────────────── */
+    .grid-lines {
+      position: absolute; inset: 0;
+      pointer-events: none; z-index: 1; opacity: .22;
+    }
+
+    /* ─── MOBILE FALLBACK ────────────────────────── */
+    @media (max-width: 900px) {
+      html, body { overflow: auto; }
+      .cover {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        height: auto; min-height: 100vh;
+      }
+      .cover-left {
+        padding: 6rem 2rem 2rem;
+        order: 1;
+      }
+      .cover-right {
+        order: 2;
+        height: 60vw; min-height: 280px;
+        overflow: hidden;
+      }
+      .mock-kaleido  { width: 62%; left: 2%; top: 5%;  }
+      .mock-gameflow { width: 55%; right: 0; top: 2%;  }
+      .mock-kanelar  { width: 16%; left: 5%; top: 50%; }
+      .mock-chart    { width: 50%; right: 2%; bottom: 2%; }
+      .cover-logo { left: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .cover-right { display: none; }
+      .cover-left { min-height: 100vh; padding: 5rem 1.8rem 3rem; }
+    }
+
+    /* Touch devices */
+    @media (hover: none), (pointer: coarse) {
+      .cursor, .cursor-ring { display: none !important; }
+      body { cursor: auto !important; }
+      a, button { cursor: pointer !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <main class="cover">
+
+    <!-- ─── LEFT: Typography & CTA ─── -->
+    <div class="cover-left">
+
+      <!-- Logo -->
+      <a href="index.html" class="cover-logo" aria-label="Xiangyu Shi">
+        <svg width="32" height="32" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 49 47 Q 37 29 32 18" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="32" cy="17" r="2.6" fill="var(--accent)"/>
+          <path d="M 51 47 Q 63 28 68 18" fill="none" stroke="var(--accent)" stroke-width="1.8" stroke-linecap="round"/>
+          <circle cx="68" cy="17" r="2.6" fill="var(--accent)"/>
+          <path d="M 50 50 C 44 33 18 22 13 40 C 9 55 32 63 50 56" fill="none" stroke="var(--accent)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 50 50 C 56 32 82 23 87 40 C 91 54 68 63 50 56" fill="none" stroke="var(--accent)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 50 58 C 41 64 24 69 22 80 C 20 88 38 89 50 76" fill="none" stroke="var(--accent)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 50 58 C 59 63 76 69 78 79 C 80 88 62 90 50 76" fill="none" stroke="var(--accent)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <ellipse cx="50" cy="62" rx="3" ry="14" fill="none" stroke="var(--accent)" stroke-width="3"/>
+        </svg>
+      </a>
+
+      <div class="cover-eyebrow">UX · Product · Interaction</div>
+
+      <h1 class="cover-name">
+        <span class="cover-name-line">Xiangyu</span>
+        <span class="cover-name-line">Shi.</span>
+      </h1>
+
+      <p class="cover-role">UX / Product Designer</p>
+
+      <div class="cover-divider"></div>
+
+      <p class="cover-bio">
+        Designing <em>systems that feel human</em> —
+        from enterprise tools to AI-powered products
+        and playful mobile experiences.
+      </p>
+
+      <div class="cover-stats">
+        <div class="stat-item">
+          <div class="stat-num">8</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Industries</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Years exp.</div>
+        </div>
+      </div>
+
+      <div class="cover-cta">
+        <a href="index.html" class="cta-btn">
+          View Portfolio
+          <svg width="13" height="13" viewBox="0 0 13 13" fill="none"
+               stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2.5 6.5h8M7 3l3.5 3.5L7 10"/>
+          </svg>
+        </a>
+        <span class="cta-sub">8 case studies</span>
+      </div>
+
+    </div>
+
+    <!-- ─── RIGHT: Mockup scene ─── -->
+    <div class="cover-right">
+
+      <!-- Subtle decorative grid -->
+      <svg class="grid-lines" viewBox="0 0 600 700" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+            <path d="M 60 0 L 0 0 0 60" fill="none" stroke="rgba(58,74,46,.18)" stroke-width=".5"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)"/>
+      </svg>
+
+      <!-- 1. Main browser — Kaleido landing page -->
+      <div class="browser mock-kaleido">
+        <div class="browser-chrome">
+          <span class="b-dot b-dot-r"></span>
+          <span class="b-dot b-dot-y"></span>
+          <span class="b-dot b-dot-g"></span>
+          <div class="b-url">kaleido.app · AI Visual Generation</div>
+        </div>
+        <img class="browser-screen" src="K1.webp" alt="Kaleido — AI visual generation platform" loading="eager" />
+      </div>
+
+      <!-- 2. Secondary browser — GameFlow Kanban board -->
+      <div class="browser mock-gameflow">
+        <div class="browser-chrome">
+          <span class="b-dot b-dot-r"></span>
+          <span class="b-dot b-dot-y"></span>
+          <span class="b-dot b-dot-g"></span>
+          <div class="b-url">gameflow.seasun.com · Requirement Pool</div>
+        </div>
+        <img class="browser-screen" src="seasun/1.jpg" alt="GameFlow — project management for game dev" loading="eager" />
+      </div>
+
+      <!-- 3. Phone — Kanelär Swedish vocab app -->
+      <div class="phone mock-kanelar">
+        <div class="phone-notch">
+          <div class="phone-notch-pill"></div>
+        </div>
+        <img class="phone-screen" src="kan.png" alt="Kanelär — Swedish vocabulary iOS app" loading="eager" />
+      </div>
+
+      <!-- 4. Tertiary browser — GameFlow iteration chart -->
+      <div class="browser mock-chart">
+        <div class="browser-chrome">
+          <span class="b-dot b-dot-r"></span>
+          <span class="b-dot b-dot-y"></span>
+          <span class="b-dot b-dot-g"></span>
+          <div class="b-url">gameflow.seasun.com · Iteration Analytics</div>
+        </div>
+        <img class="browser-screen" src="seasun/3.jpg" alt="GameFlow — burndown chart and iteration tracking" loading="eager" />
+      </div>
+
+      <!-- Floating project tag -->
+      <div class="mock-tag">
+        <span class="mock-tag-dot"></span>
+        Enterprise · AI · Mobile · VR
+      </div>
+
+    </div>
+
+  </main>
+
+  <script>
+    /* Cursor tracking */
+    const cursor     = document.getElementById('cursor');
+    const cursorRing = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+    (function loop() {
+      rx += (mx - rx) * .22; ry += (my - ry) * .22;
+      cursor.style.left     = mx + 'px'; cursor.style.top     = my + 'px';
+      cursorRing.style.left = rx + 'px'; cursorRing.style.top = ry + 'px';
+      requestAnimationFrame(loop);
+    })();
+
+    /* Hover expansion on interactive elements */
+    document.querySelectorAll('a,.browser,.phone').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1.5)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+      });
+    });
+
+    /* Subtle parallax on the mockup scene */
+    const right = document.querySelector('.cover-right');
+    const mocks = Array.from(document.querySelectorAll('.mock-kaleido,.mock-gameflow,.mock-kanelar,.mock-chart'));
+    const depths  = [3, 5, 7, 4];
+    const baseRots = ['-1.8deg', '1.6deg', '-4deg', '2.2deg'];
+    document.addEventListener('mousemove', e => {
+      const rect = right.getBoundingClientRect();
+      if (rect.width === 0) return;
+      const cx = (e.clientX - rect.left) / rect.width  - .5;
+      const cy = (e.clientY - rect.top)  / rect.height - .5;
+      mocks.forEach((m, i) => {
+        const d = depths[i];
+        m.style.transform = `rotate(${baseRots[i]}) translate(${cx * d * -1}px, ${cy * d * -.8}px)`;
+      });
+    });
+  </script>
+
+</body>
+</html>
