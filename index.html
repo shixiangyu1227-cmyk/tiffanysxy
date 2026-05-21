@@ -330,97 +330,87 @@
     .project-card:nth-child(8) .project-thumb-bg { background: #1b2e20; padding: 0 2.5rem; text-align: center; }
     .project-card:nth-child(9) .project-thumb-bg { background: #1e3328; padding: 0 2.5rem; text-align: center; }
 
-    /* ─── MORE WORK CARD — Meadow Scene ──────────────── */
-    @property --mwc-angle {
-      syntax: '<angle>';
-      inherits: false;
-      initial-value: 0deg;
-    }
-    @keyframes mwc-beam-spin {
-      to { --mwc-angle: 360deg; }
-    }
+    /* ─── MORE WORK CARD — Glassmorphism ──────────────── */
     .more-work-card {
       display: none;
       position: relative;
       overflow: hidden;
       cursor: none;
-      min-height: 220px;
-      transition: transform .4s var(--ease);
+      min-height: 260px;
+      background:
+        radial-gradient(ellipse 90% 80% at 10% 20%, rgba(61,92,58,.32) 0%, transparent 52%),
+        radial-gradient(ellipse 70% 90% at 90% 80%, rgba(61,92,58,.20) 0%, transparent 52%),
+        radial-gradient(ellipse 80% 50% at 50% 110%, rgba(138,152,112,.45) 0%, transparent 55%),
+        linear-gradient(145deg, #b6c0a4 0%, #c2c9b0 45%, #ccd4bc 100%);
+      border: 1px solid rgba(255,255,255,.22);
+      transition: transform .45s var(--ease);
     }
     .more-work-card.visible { display: block; }
-    .more-work-card:hover { transform: scale(1.012); }
-    /* Border — two diagonal opposite light-beam sweeps */
-    .more-work-card.visible::after {
+    .more-work-card:hover { transform: scale(1.014); }
+
+    /* Diagonal shimmer overlay */
+    .more-work-card::before {
       content: '';
       position: absolute; inset: 0;
-      padding: 3px;
-      background: conic-gradient(
-        from var(--mwc-angle),
-        transparent 0deg,
-        transparent 155deg,
-        rgba(248,242,225,.0)  162deg,
-        rgba(248,242,225,.6)  172deg,
-        rgba(248,242,225,1.0) 181deg,
-        rgba(248,242,225,.6)  190deg,
-        rgba(248,242,225,.0)  200deg,
-        transparent 335deg,
-        rgba(248,242,225,.0)  342deg,
-        rgba(248,242,225,.6)  352deg,
-        rgba(248,242,225,1.0) 361deg,
-        rgba(248,242,225,.6)  370deg
-      );
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      animation: mwc-beam-spin 5s linear infinite;
-      z-index: 1; pointer-events: none;
+      background: linear-gradient(135deg,
+        rgba(255,255,255,.16) 0%,
+        rgba(255,255,255,.04) 45%,
+        transparent 72%);
+      pointer-events: none; z-index: 1;
     }
-    .mwc-scene {
+
+    /* Glass panel */
+    .mwc-glass {
       position: absolute; inset: 0;
-      width: 100%; height: 100%;
-      display: block;
-    }
-    .mwc-content {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      display: flex; flex-direction: column;
-      align-items: center; gap: .5rem;
-      z-index: 2; text-align: center;
-      pointer-events: none;
-    }
-    .mwc-label {
-      font-family: var(--font-serif); font-size: .72rem;
-      font-style: italic; letter-spacing: .07em;
-      color: rgba(28,38,18,.85);
-      background: rgba(238,233,218,.68);
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-      padding: .28rem 1rem; border-radius: 100px;
-      border: 1px solid rgba(28,38,18,.18);
-    }
-    .mwc-title {
-      font-family: var(--font-serif); font-size: 2.15rem;
-      font-weight: 400; font-style: italic;
-      color: rgba(28,38,18,.88);
-      text-shadow: 0 1px 12px rgba(238,233,218,.55), 0 0 32px rgba(210,205,188,.35);
-      line-height: 1; letter-spacing: .015em;
-    }
-    .mwc-arrow {
-      width: 36px; height: 36px;
-      border: 1.5px solid rgba(28,38,18,.42);
-      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      margin-top: calc(.1rem + 10px);
-      transition: border-color .3s, transform .3s var(--ease);
-      color: rgba(28,38,18,.82);
+      z-index: 2; padding: 2rem;
     }
-    .more-work-card:hover .mwc-arrow {
-      border-color: rgba(28,38,18,.78);
+    .mwc-glass-panel {
+      background: rgba(240,238,230,.28);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255,255,255,.52);
+      border-radius: 1.4rem;
+      padding: 2rem 3.2rem;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.3rem;
+      text-align: center;
+      box-shadow:
+        0 8px 32px rgba(26,26,24,.08),
+        0 2px 8px rgba(26,26,24,.04),
+        inset 0 1px 0 rgba(255,255,255,.58);
+      transition: box-shadow .4s var(--ease), transform .4s var(--ease);
+    }
+    .more-work-card:hover .mwc-glass-panel {
+      box-shadow:
+        0 20px 60px rgba(26,26,24,.14),
+        0 4px 16px rgba(26,26,24,.07),
+        inset 0 1px 0 rgba(255,255,255,.65);
+      transform: translateY(-3px);
+    }
+    .mwc-quote {
+      font-family: var(--font-ser);
+      font-size: 1.5rem; font-weight: 400; font-style: italic;
+      color: rgba(26,26,24,.80);
+      line-height: 1.3; letter-spacing: -.01em;
+    }
+    .mwc-explore-btn {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-family: var(--font-mon); font-size: .65rem;
+      font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--white);
+      background: var(--accent);
+      border: none; border-radius: 100px;
+      padding: .56rem 1.4rem; cursor: none;
+      box-shadow: 0 4px 16px rgba(61,92,58,.35);
+      transition: background .25s, transform .25s var(--ease), box-shadow .25s;
+    }
+    .more-work-card:hover .mwc-explore-btn {
+      background: #2e4a2b;
       transform: translateX(4px);
+      box-shadow: 0 6px 22px rgba(61,92,58,.45);
     }
-    .mwc-arrow svg { width: 13px; height: 13px; }
+    .mwc-explore-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
 
     /* ─── DEFAULT PHOTO ──────────────────────────── */
     .project-thumb-photo {
@@ -1052,9 +1042,9 @@
             <div class="project-view dark-view"><span>View Project</span></div>
           </div>
           <div class="project-info">
-            <div class="project-tags"><span class="project-meta">Enterprise Product Design</span><span class="project-meta">@4399</span></div>
+            <div class="project-tags"><span class="project-meta">B2B</span><span class="project-meta">Enterprise</span><span class="project-meta">End-to-End</span><span class="project-meta">Workflow Automation</span><span class="project-meta">HR Tech</span></div>
             <div class="project-title">SmartHire</div>
-            <div class="project-desc">Redesigning the End-to-End Recruitment Workflow for an Enterprise HR Team</div>
+            <div class="project-desc">Redesigning the recruitment system for a 2,000-person company, replacing much of HR's manual coordination with automation.</div>
           </div>
         </div>
         </a>
@@ -1253,121 +1243,18 @@
         </a>
       </article>
 
-      <!-- More work card — mini hero flower scene -->
+      <!-- More work card — glassmorphism -->
       <div class="more-work-card" id="more-work-card" role="button" tabindex="0" aria-label="Show all projects">
-        <svg class="mwc-scene" viewBox="0 0 480 280" preserveAspectRatio="xMidYMid slice"
-             xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <defs>
-            <linearGradient id="mwc-depth" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%"   stop-color="#c5cdb2" stop-opacity="0"/>
-              <stop offset="48%"  stop-color="#c5cdb2" stop-opacity="0"/>
-              <stop offset="78%"  stop-color="#bfc8a8" stop-opacity="0.10"/>
-              <stop offset="100%" stop-color="#b8c2a0" stop-opacity="0.26"/>
-            </linearGradient>
-          </defs>
-
-          <!-- ① Sage green base — clean, light, minimal depth -->
-          <rect width="480" height="280" fill="#c5cdb2"/>
-          <ellipse cx="240" cy="72"  rx="300" ry="175" fill="#bfc9aa" opacity="0.52"/>
-          <ellipse cx="110" cy="195" rx="196" ry="138" fill="#b8c2a2" opacity="0.38"/>
-          <ellipse cx="385" cy="208" rx="218" ry="148" fill="#c0cab0" opacity="0.36"/>
-
-          <!-- ② Upper sparse blossom hints — barely-there, y=38-132, ff-sm filter -->
-          <g class="hf-detail" filter="url(#ff-sm)" opacity="0.50">
-            <ellipse cx="84"  cy="44"  rx="9"  ry="7"  fill="#d0c2d8"/>
-            <ellipse cx="198" cy="38"  rx="8"  ry="6"  fill="#d8c8ca"/>
-            <ellipse cx="318" cy="46"  rx="10" ry="7"  fill="#ccc0d6"/>
-            <ellipse cx="432" cy="40"  rx="8"  ry="6"  fill="#d4c4cc"/>
-            <ellipse cx="50"  cy="74"  rx="11" ry="8"  fill="#c8bcd4"/>
-            <ellipse cx="162" cy="68"  rx="9"  ry="7"  fill="#d6c8c4"/>
-            <ellipse cx="276" cy="76"  rx="10" ry="8"  fill="#c4b8d0"/>
-            <ellipse cx="390" cy="70"  rx="9"  ry="7"  fill="#d2c2ce"/>
-            <ellipse cx="472" cy="74"  rx="8"  ry="6"  fill="#ccbcd8"/>
-            <ellipse cx="24"  cy="102" rx="12" ry="9"  fill="#c0b2cc"/>
-            <ellipse cx="122" cy="110" rx="10" ry="8"  fill="#d4bcc4"/>
-            <ellipse cx="240" cy="104" rx="11" ry="8"  fill="#c6bad2"/>
-            <ellipse cx="354" cy="112" rx="10" ry="7"  fill="#d0bece"/>
-            <ellipse cx="462" cy="106" rx="9"  ry="7"  fill="#ccc0d4"/>
-            <ellipse cx="72"  cy="124" rx="11" ry="8"  fill="#c2b4ce"/>
-            <ellipse cx="188" cy="130" rx="10" ry="8"  fill="#d6c2c4"/>
-            <ellipse cx="304" cy="126" rx="11" ry="8"  fill="#c4b8d2"/>
-            <ellipse cx="418" cy="132" rx="10" ry="7"  fill="#cebccc"/>
-          </g>
-
-          <!-- ③ Mid blooms — sparse at top, growing denser downward, hf-mid + ff-mid -->
-          <g class="hf-mid" filter="url(#ff-mid)" opacity="0.74">
-            <ellipse cx="50"  cy="100" rx="14" ry="11" fill="#d4b8cc"/>
-            <ellipse cx="140" cy="94"  rx="16" ry="12" fill="#baaece"/>
-            <ellipse cx="280" cy="90"  rx="15" ry="11" fill="#d0b8c4"/>
-            <ellipse cx="420" cy="98"  rx="16" ry="12" fill="#c4b4d4"/>
-            <ellipse cx="24"  cy="130" rx="19" ry="14" fill="#c2b0d0"/>
-            <ellipse cx="116" cy="136" rx="17" ry="13" fill="#d6b4be"/>
-            <ellipse cx="214" cy="128" rx="18" ry="14" fill="#bcb0d2"/>
-            <ellipse cx="312" cy="137" rx="17" ry="13" fill="#cebeda"/>
-            <ellipse cx="410" cy="130" rx="19" ry="14" fill="#d2b2bc"/>
-            <ellipse cx="470" cy="135" rx="14" ry="11" fill="#c4bcd4"/>
-            <ellipse cx="50"  cy="160" rx="20" ry="16" fill="#c0b0ce"/>
-            <ellipse cx="140" cy="166" rx="19" ry="15" fill="#d8b8c2"/>
-            <ellipse cx="230" cy="158" rx="21" ry="16" fill="#baaed0"/>
-            <ellipse cx="320" cy="167" rx="20" ry="15" fill="#ccbcda"/>
-            <ellipse cx="410" cy="160" rx="21" ry="16" fill="#d4b2bc"/>
-            <ellipse cx="470" cy="165" rx="17" ry="13" fill="#c2bcd6"/>
-            <ellipse cx="18"  cy="188" rx="22" ry="17" fill="#c2b0cc"/>
-            <ellipse cx="106" cy="194" rx="21" ry="16" fill="#d4b6c0"/>
-            <ellipse cx="196" cy="186" rx="23" ry="18" fill="#bcb0d0"/>
-            <ellipse cx="286" cy="195" rx="22" ry="17" fill="#ccbede"/>
-            <ellipse cx="376" cy="188" rx="23" ry="18" fill="#d0b0b8"/>
-            <ellipse cx="458" cy="193" rx="19" ry="15" fill="#c4bcd6"/>
-            <ellipse cx="56"  cy="214" rx="24" ry="19" fill="#c4b6d2"/>
-            <ellipse cx="148" cy="220" rx="23" ry="18" fill="#d6b8c4"/>
-            <ellipse cx="240" cy="212" rx="25" ry="20" fill="#baaed2"/>
-            <ellipse cx="330" cy="221" rx="24" ry="19" fill="#cebcd6"/>
-            <ellipse cx="416" cy="214" rx="25" ry="20" fill="#d4b2be"/>
-            <ellipse cx="474" cy="219" rx="19" ry="15" fill="#c2bcd8"/>
-            <ellipse cx="20"  cy="242" rx="26" ry="20" fill="#c0b4d0"/>
-            <ellipse cx="114" cy="248" rx="25" ry="19" fill="#d8b8c2"/>
-            <ellipse cx="208" cy="241" rx="27" ry="21" fill="#bab0d2"/>
-            <ellipse cx="302" cy="249" rx="26" ry="20" fill="#cebad8"/>
-            <ellipse cx="396" cy="242" rx="27" ry="21" fill="#d2b0bc"/>
-            <ellipse cx="468" cy="247" rx="21" ry="16" fill="#c4bcd6"/>
-          </g>
-
-          <!-- ④ Dense blurry lower layer — ff-fg heavy blur, growing toward bottom -->
-          <g class="hf-fg" filter="url(#ff-fg)" opacity="0.56">
-            <ellipse cx="64"  cy="192" rx="44" ry="34" fill="#c0aece"/>
-            <ellipse cx="200" cy="198" rx="46" ry="36" fill="#d4b8c0"/>
-            <ellipse cx="336" cy="191" rx="44" ry="34" fill="#b8aed4"/>
-            <ellipse cx="462" cy="196" rx="38" ry="30" fill="#ccb0be"/>
-            <ellipse cx="0"   cy="193" rx="34" ry="27" fill="#d0bcd6"/>
-            <ellipse cx="96"  cy="225" rx="50" ry="40" fill="#c8b4d0"/>
-            <ellipse cx="228" cy="231" rx="52" ry="42" fill="#d2b0bc"/>
-            <ellipse cx="360" cy="224" rx="50" ry="40" fill="#bcb2d6"/>
-            <ellipse cx="472" cy="229" rx="40" ry="32" fill="#ccb8d8"/>
-            <ellipse cx="14"  cy="226" rx="38" ry="30" fill="#d8c4c0"/>
-            <ellipse cx="52"  cy="258" rx="56" ry="44" fill="#c4b4d4"/>
-            <ellipse cx="184" cy="264" rx="58" ry="46" fill="#d8bcc8"/>
-            <ellipse cx="316" cy="257" rx="56" ry="44" fill="#b8b0d2"/>
-            <ellipse cx="448" cy="262" rx="50" ry="40" fill="#ceb8d8"/>
-            <ellipse cx="480" cy="258" rx="36" ry="29" fill="#d2b0bc"/>
-            <ellipse cx="80"  cy="278" rx="64" ry="50" fill="#c2b2d4"/>
-            <ellipse cx="216" cy="284" rx="66" ry="52" fill="#d4c0c8"/>
-            <ellipse cx="352" cy="277" rx="62" ry="49" fill="#baaed0"/>
-            <ellipse cx="476" cy="281" rx="52" ry="42" fill="#ccb4c2"/>
-            <ellipse cx="0"   cy="280" rx="44" ry="35" fill="#d0bcd8"/>
-          </g>
-
-          <!-- ⑤ Depth gradient overlay — transparent top, subtle sage wash at bottom -->
-          <rect width="480" height="280" fill="url(#mwc-depth)" pointer-events="none"/>
-        </svg>
-
-        <div class="mwc-content">
-          <div class="mwc-label">9 projects total</div>
-          <div class="mwc-title">More work</div>
-          <div class="mwc-arrow">
-            <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"
-                 stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 7h10M8 3l4 4-4 4"/>
-            </svg>
+        <div class="mwc-glass">
+          <div class="mwc-glass-panel">
+            <div class="mwc-quote">I love turning mess into clear design.</div>
+            <button class="mwc-explore-btn">
+              Explore more work
+              <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 7h10M8 3l4 4-4 4"/>
+              </svg>
+            </button>
           </div>
         </div>
       </div>
