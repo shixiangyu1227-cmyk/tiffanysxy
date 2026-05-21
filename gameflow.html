@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -766,15 +766,12 @@
       </div>
       <h1 class="reveal">GameFlow</h1>
       <p class="hero-tagline reveal">A Project Management Platform for Game Development</p>
+      <p class="hero-sub">A 1,000-person game studio where development coordination was scattered across group chats and shared cloud docs, leaving downstream teams to constantly miss upstream changes. We built a platform from 0 to 1 that pulls these workflows into one place. Now piloting in the core game departments.</p>
     </div>
     <div class="hero-info-bar">
       <div>
-        <div class="hero-info-label">Role</div>
-        <div class="hero-info-value">Product Design Intern</div>
-      </div>
-      <div>
         <div class="hero-info-label">Company</div>
-        <div class="hero-info-value">KingSoft Seasun Games</div>
+        <div class="hero-info-value">Seasun Games</div>
       </div>
       <div>
         <div class="hero-info-label">Timeline</div>
@@ -787,200 +784,183 @@
     </div>
   </section>
 
-  <!-- 01 · CONTEXT & BACKGROUND -->
+  <!-- 01 · WHAT CHANGED -->
   <div class="wrap">
     <section class="sec reveal">
-      <div class="section-label">01 · Context</div>
-      <div class="section-title">Seasun Games &amp; <em>the Challenge of Scale</em></div>
+      <div class="section-label">01 · What Changed</div>
+      <div class="grid-3">
+        <div class="card ctx-green">
+          <p>Changes no longer travel through group chats, a status update now notifies the owner automatically.</p>
+        </div>
+        <div class="card ctx-blue">
+          <p>PMs no longer check in with each group lead one by one, switching views shows the full picture.</p>
+        </div>
+        <div class="card ctx-warm">
+          <p>Five departments went from five separate cloud docs to one shared view.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- 02 · MY ROLE -->
+  <div class="wrap">
+    <section class="sec reveal">
+      <div class="section-label">02 · My Role</div>
+      <div class="callout accent-box">
+        <p><strong>Product Design Intern.</strong> Independently designed three core interactions: the change log's notification and traceability, the multi-dimensional filter panel's view switching, and the dual-axis progress toggle, all reviewed and approved by the PM. The underlying module architecture was led by the PM; early research and requirement prioritization were supporting roles.</p>
+      </div>
+    </section>
+  </div>
+
+  <!-- 03 · THE PROBLEM -->
+  <div class="wrap">
+    <section class="sec reveal">
+      <div class="section-label">03 · The Problem</div>
+      <div class="section-title">Coordination That <em>Couldn't Keep Up</em></div>
       <p style="font-size:.95rem;color:var(--ink-muted);line-height:1.85;">
-        Seasun Games runs 10+ live game titles with a team of over 1,000 people. Game development involves long production cycles and rapid requirement changes. It requires intense, simultaneous collaboration across different teams, including Art, Programming, QA, and Operations.
+        The company runs 10+ live games with a team of over 1,000 people, requiring constant collaboration across Art, Programming, QA, and Operations. But the tools hadn't kept up: producers tracked progress in cloud spreadsheets, requirement changes traveled through group chats, and QA couldn't see upstream progress until the work landed in their queue.
       </p>
       <p style="font-size:.95rem;color:var(--ink-muted);line-height:1.85;margin-top:1rem;">
-        But the tools hadn't kept up with that complexity:
-      </p>
-
-      <div class="grid-3" style="margin-top:1.8rem;">
-        <div class="card ctx-warm" style="padding:1rem 1.2rem;">
-          <div class="ctx-num">01</div>
-          <h4 style="color:var(--red);">Producers</h4>
-          <p>Tracked iterations in Excel</p>
-        </div>
-        <div class="card ctx-green" style="padding:1rem 1.2rem;">
-          <div class="ctx-num">02</div>
-          <h4 style="color:var(--accent);">Requirements</h4>
-          <p>Requirement changes traveled through group chats</p>
-        </div>
-        <div class="card ctx-blue" style="padding:1rem 1.2rem;">
-          <div class="ctx-num">03</div>
-          <h4 style="color:var(--blue);">QA</h4>
-          <p>Had no view into what was coming until it landed in their queue</p>
-        </div>
-      </div>
-
-      <p style="font-size:.95rem;color:var(--ink-muted);line-height:1.85;margin-top:1.8rem;font-style:italic;">
-        GameFlow was built to replace that patchwork with one production platform every role could actually&nbsp;use.
+        This created three persistent problems: changes went unnoticed, the five teams each worked off their own view, and delays were always discovered after the fact. Our goal was to replace this fragmented coordination with a single platform.
       </p>
     </section>
   </div>
 
-  <!-- 02 · PROBLEM STATEMENT -->
+  <!-- 04 · MY SOLUTION — OVERVIEW -->
   <div class="wrap">
     <section class="sec reveal">
-      <div class="section-label">02 · Research: 3 Weeks Before Any Screen</div>
-      <div class="section-title">Three Pain Points That <em>Kept Showing Up</em></div>
+      <div class="section-label">04 · My Solution</div>
+      <div class="section-title">Three Modules, <em>One Underlying Judgment</em></div>
       <p style="font-size:.95rem;color:var(--ink-muted);line-height:1.85;">
-        Before designing anything, I spent three weeks embedded across five departments, sitting in on daily stand-ups, and interviewing 15 stakeholders — producers, artists, QA leads, planners, devops. The goal wasn't to collect feature requests. It was to understand how a 1,000-person studio actually coordinated work day to day, and where that coordination broke down.
+        Three modules address three problems, but they share one underlying judgment: the same data, with different roles caring about different slices of it. So instead of building a separate setup for each department, I made states, fields, and views into configurable components that several modules reuse through the same interaction. That's what let three modules move forward in parallel within a single internship.
       </p>
-
-      <div class="pain-rows">
-        <div class="pain-row pr-red">
-          <div class="pain-row-left">
-            <div class="pain-badge pb-red">Pain Point 01</div>
-            <h4 style="color:var(--red);">Information Silos &amp; Ghost Changes</h4>
-          </div>
-          <div class="pain-row-right">
-            <p><em>"Nobody knows what changed, or who changed it."</em></p>
-            <p><strong>The Issue:</strong> Changes are "invisible." Updates happen in private chats or personal sheets, leaving Art, Tech, and QA working off outdated specs.</p>
-            <p><strong>Result:</strong> Wasted effort and "bugs" that are actually just uncommunicated features.</p>
-          </div>
-        </div>
-        <div class="pain-row pr-green">
-          <div class="pain-row-left">
-            <div class="pain-badge pb-green">Pain Point 02</div>
-            <h4 style="color:var(--accent);">Fragmented Tools, Zero Visibility</h4>
-          </div>
-          <div class="pain-row-right">
-            <p><em>"Five teams, five systems, zero shared view."</em></p>
-            <p><strong>The Issue:</strong> Every department uses its own tracking method. There is no "single source of truth."</p>
-            <p><strong>Result:</strong> Producers must manually hunt for status updates, and delays in one team hit others by surprise.</p>
-          </div>
-        </div>
-        <div class="pain-row pr-blue">
-          <div class="pain-row-left">
-            <div class="pain-badge pb-blue">Pain Point 03</div>
-            <h4 style="color:var(--blue);">Reactive vs. Proactive Tracking</h4>
-          </div>
-          <div class="pain-row-right">
-            <p><em>"Delays were discovered, not anticipated."</em></p>
-            <p><strong>The Issue:</strong> No bird's-eye view of the 3–12 month cycle. Bottlenecks are only identified after they have already caused a pile-up.</p>
-            <p><strong>Result:</strong> Constant "firefighting" instead of early risk management.</p>
-          </div>
-        </div>
-      </div>
     </section>
   </div>
 
-  <!-- Solution 1 -->
+  <!-- Module 1: Change Log -->
   <div class="wrap">
     <section class="module reveal">
-      <div class="mod-num">Solution 01 / 03</div>
-      <h3>Requirement Tracking: Making Changes Transparent and Traceable</h3>
-      <div class="mod-tagline">Make every change visible</div>
+      <div class="mod-num">1 &nbsp; Change Log</div>
+      <h3>Changes Are Traceable and Searchable</h3>
 
       <div class="ps-grid">
         <div class="ps-block prob-block">
-          <div class="ps-label prob"><span class="dot prob"></span>The Scenario</div>
-          <p>A requirement travels through multiple departments before it's implemented. In the past, mid-stream changes often left downstream teams in the dark, leading to wasted development effort.</p>
+          <div class="ps-label prob"><span class="dot prob"></span>The Problem</div>
+          <p>A requirement passes through multiple departments before it ships. When something changes mid-stream, downstream teams are often left in the dark, leading to wasted work.</p>
         </div>
         <div class="ps-block sol-block">
-          <div class="ps-label sol"><span class="dot sol"></span>My Contribution</div>
-          <p>I deeply participated in mapping the business workflows and assisted the PM in building a "Unified Requirement Pool." I took ownership of the full change log's interaction design, ensuring that any status update automatically triggers a notification to the owner. This ensures that no matter how many times a spec changes, any newcomer can immediately understand the context and history.</p>
+          <div class="ps-label sol"><span class="dot sol"></span>What I Did</div>
+          <p>I designed the change log: once a status updates, the owner is notified automatically. No matter how many times something changes, anyone joining later can see the full history. The requirement pool itself was led by the PM; I contributed to the interaction design.</p>
         </div>
       </div>
 
-      <div class="detail-box">
-        <h5>Design Thinking</h5>
-        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">Game development is iterative, not linear. By designing a robust tagging and filtering system, I enabled different roles to work from the same pool while focusing only on the information relevant to them.</p>
+      <div class="callout accent-box">
+        <h4>Why I Did It</h4>
+        <p>Game development is iterative, not linear, and changes are frequent. So I made every change a traceable timeline rather than just showing the latest state, so downstream teams can see not only what it is now, but what changed along the way and why.</p>
       </div>
 
-      <div class="img-zoom reveal-img">
-        <img src="seasun/1.jpg" alt="Requirement Tracking Design" />
+      <div class="img-zoom reveal-img" style="margin-top:1.8rem;">
+        <img src="seasun/1.jpg" alt="Requirement pool list view" />
       </div>
-      <div class="img-caption">Requirement Pool list view &amp; workflow editor</div>
+      <div class="img-caption">Design: Requirement pool list view</div>
     </section>
   </div>
 
-  <!-- Solution 2 -->
+  <!-- Module 2: Multi-Dimensional Filter -->
   <div class="wrap">
     <section class="module reveal">
-      <div class="mod-num">Solution 02 / 03</div>
-      <h3>Cross-Team Collaboration: Breaking Down Information Silos</h3>
-      <div class="mod-tagline">One view of the work, shared across every team</div>
+      <div class="mod-num">2 &nbsp; Multi-Dimensional Filter</div>
+      <h3>One Panel, Switch on Demand</h3>
 
       <div class="ps-grid">
         <div class="ps-block prob-block">
-          <div class="ps-label prob"><span class="dot prob"></span>The Scenario</div>
-          <p>The Art Center supports multiple projects simultaneously, making it hard for leads to track member bandwidth; meanwhile, Producers had to check in with every group lead manually to see the big picture.</p>
+          <div class="ps-label prob"><span class="dot prob"></span>The Problem</div>
+          <p>The Art Center supports several projects at once, so leads struggle to track each member's workload; producers who want the full picture have to check in with each lead one by one.</p>
         </div>
         <div class="ps-block sol-block">
-          <div class="ps-label sol"><span class="dot sol"></span>My Contribution</div>
-          <p>I produced a cross-departmental collaboration blueprint through extensive research and assisted the PM in connecting requirements, development, testing, and release into a "Unified Production Pipeline." I specifically focused on designing the multi-dimensional filter panel, allowing managers to toggle between "Project" and "Department" views to instantly grab the data they need.</p>
+          <div class="ps-label sol"><span class="dot sol"></span>What I Did</div>
+          <p>I designed a filter panel that switches between a "by project" and "by department" view, surfacing the needed data instantly. Connecting requirements, development, testing, and release into one pipeline was led by the PM.</p>
         </div>
       </div>
 
-      <div class="detail-box">
-        <h5>Design Thinking</h5>
-        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">Fragmentation stems from disconnected tools. Instead of creating separate sheets for each department, my strategy was to create one flexible system where everyone works from a single "Source of Truth."</p>
+      <div class="callout accent-box">
+        <h4>Why I Did It</h4>
+        <p>Each department maintaining its own doc only deepens the fragmentation. Better to build one switchable panel where everyone works off the same data. This switch follows the same logic as the toggle in the progress module below.</p>
       </div>
 
-      <div class="img-zoom reveal-img">
-        <img src="seasun/2.jpg" alt="Cross-Team Collaboration Design" />
+      <div class="img-zoom reveal-img" style="margin-top:1.8rem;">
+        <img src="seasun/2.jpg" alt="Unified pipeline view & multi-dimensional filter panel" />
       </div>
-      <div class="img-caption">Unified pipeline view &amp; multi-dimensional filter panel</div>
+      <div class="img-caption">Design: Unified pipeline view &amp; multi-dimensional filter panel</div>
     </section>
   </div>
 
-  <!-- Solution 3 -->
+  <!-- Module 3: Progress Toggle -->
   <div class="wrap">
     <section class="module reveal">
-      <div class="mod-num">Solution 03 / 03</div>
-      <h3>Progress Tracking: Identifying Risks Before They Escalate</h3>
-      <div class="mod-tagline">Spot delays before they cascade</div>
+      <div class="mod-num">3 &nbsp; Progress Toggle ★</div>
+      <h3>Aligning Two Roles in One View</h3>
+      <div class="mod-tagline">This is the judgment I most want to walk through.</div>
 
       <div class="ps-grid">
         <div class="ps-block prob-block">
-          <div class="ps-label prob"><span class="dot prob"></span>The Scenario</div>
-          <p>As the launch date approaches, Producers need to know if the remaining work can be finished on time, rather than discovering a delay on the day of the deadline.</p>
+          <div class="ps-label prob"><span class="dot prob"></span>The Conflict I Found</div>
+          <p>While working on progress visualization, I noticed that PMs ask "how many items are left," while tech leads ask "how many person-days are left." From the same progress data, the two roles want two different answers. Build only one, and the other side has to do the conversion themselves, so miscommunication is inevitable.</p>
         </div>
         <div class="ps-block sol-block">
-          <div class="ps-label sol"><span class="dot sol"></span>My Contribution</div>
-          <p>I assisted the PM in introducing Gantt and Burndown charts and took charge of the visual logic for risk warnings. When progress falls behind, the system automatically flags it in red. Furthermore, I proposed a "Task Count vs. Effort Hours" dual-axis toggle to balance the different priorities of PMs and Tech Leads.</p>
+          <div class="ps-label sol"><span class="dot sol"></span>What I Did</div>
+          <p>Instead of building two pages, I added a "by task count / by person-days" toggle. Same underlying data, switch how it's presented, and both roles can align in one view. When progress falls behind, the system flags it in red, and I designed this warning logic as well. The Gantt and burndown charts were an established team decision; I was responsible for their presentation and interaction.</p>
         </div>
       </div>
 
-      <div class="detail-box">
-        <h5>Key Trade-off</h5>
-        <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;">While PMs care about "how many items are left," Tech Leads care about "how many person-days are required." This dual-view design ensures both parties are communicating on the same wavelength, reducing misunderstandings.</p>
+      <div class="img-zoom reveal-img" style="margin-top:1.8rem;">
+        <img src="seasun/3.jpg" alt="Gantt chart, burndown chart & sprint Kanban" />
       </div>
+      <div class="img-caption">Design: Gantt chart, burndown chart &amp; sprint Kanban</div>
 
-      <div class="img-zoom reveal-img">
-        <img src="seasun/3.jpg" alt="Progress Tracking Design" />
+      <div class="callout accent-box" style="margin-top:1.8rem;">
+        <h4>Why This Toggle Matters</h4>
+        <p>Most tools assume everyone seeing the same progress number is enough. But in a 1,000-person development system, managers and tech leads define "progress" differently to begin with. Forcing them onto one number means forcing one side to do the math every time. This toggle isn't an extra chart, it acknowledges that the two roles have inherently different concerns, and resolves it with the lightest possible interaction.</p>
+        <p style="margin-top:.8rem;">On top of that, this was a system built from scratch, so I aligned key analytics events with the PM up front, such as whether change notifications were actually seen, and how often the filter panel was used. The goal was to ground post-launch iteration in data rather than gut feel.</p>
       </div>
-      <div class="img-caption">Gantt chart, burndown chart &amp; sprint Kanban</div>
     </section>
   </div>
 
-  <!-- REFLECTION -->
+  <!-- 05 · UPFRONT RESEARCH -->
+  <div class="wrap">
+    <section class="sec reveal">
+      <div class="section-label">05 · Upfront Research</div>
+      <div class="section-title">Three Weeks <em>Before Any Screen</em></div>
+      <p style="font-size:.95rem;color:var(--ink-muted);line-height:1.85;">
+        Before designing anything, I spent three weeks embedded across five departments, sitting in on daily stand-ups and interviewing 15 stakeholders: producers, artists, QA leads, planners, and devops. The point wasn't to collect a feature list, but to understand how a 1,000-person studio actually coordinates day to day, and where it gets stuck.
+      </p>
+      <p style="font-size:.95rem;color:var(--ink-muted);line-height:1.85;margin-top:1rem;">
+        Every judgment above came out of those three weeks: changes traveling through group chats and getting missed downstream was something I saw repeatedly in stand-ups; PMs confirming progress one lead at a time was a producer's own words; the two roles defining "progress" differently surfaced in the interviews.
+      </p>
+    </section>
+  </div>
+
+  <!-- 06 · WHAT I LEARNED -->
   <div class="wrap">
     <section class="sec reflection reveal" style="padding-bottom:5rem;">
-      <div class="section-label">Reflection &amp; Takeaways</div>
-      <div class="section-title">What This Project <em>Taught Me</em></div>
+      <div class="section-label">06 · What I Learned</div>
 
       <div class="grid-3" style="margin-top:1.5rem;margin-bottom:2rem;">
         <div class="card rc-stripe">
-          <h4 style="color:var(--accent);">Design for flexibility, not templates</h4>
-          <p style="font-size:.78rem;">Game teams have diverse workflows. Building customizable components (states, fields, views) rather than rigid templates was key to adoption across different project types and team sizes. The moment we hard-coded a workflow, someone needed it to work differently.</p>
+          <h4 style="color:var(--accent);">Build components that snap together, not rigid templates</h4>
+          <p style="font-size:.78rem;">Game teams work in very different ways, and no single workflow fits everyone. Making states, fields, and views into configurable components lets teams assemble what they need at their own pace, rather than being constrained by the tool. Every time we hard-coded a workflow, a team would soon say "that's not how it works on my side," which is exactly why the three modules could reuse the same interaction.</p>
         </div>
         <div class="card rc-ghost">
-          <h4 style="color:var(--blue) !important;">Earn credibility through evidence</h4>
-          <p style="font-size:.78rem;">As an intern on the team, I couldn't rely on authority. Every design decision had to be grounded in research — a quote from an interview, a pattern from observation, a data point from testing. That discipline shaped how I present work to this day.</p>
+          <h4 style="color:var(--blue) !important;">Let the evidence speak</h4>
+          <p style="font-size:.78rem;">Every design decision I made had a source: a line from an interview, a pattern that kept showing up in stand-ups, an analytics data point. It forced me to swap "I think" for "I saw," and it's why the PM was willing to keep building on my proposals.</p>
         </div>
         <div class="card rc-dark">
-          <h4>The real challenge was organizational, not visual</h4>
-          <p style="font-size:.78rem;">Three weeks of groundwork changed how I approach every project since. Before GameFlow, I would have started wireframes in week one. Now, my first move on any project is mapping the existing workflow end to end before touching any screen. That habit saves me the most rework.</p>
+          <h4>Sort out the collaboration before touching the interface</h4>
+          <p style="font-size:.78rem;">The hardest part was never how the interface looks, but thinking through how people coordinate first. The three modules really solve the same thing, bringing misaligned information back into one place. So now, the first thing I do on any project isn't sketching wireframes; it's mapping the existing workflow end to end before I touch the interface. That step has saved me the most rework.</p>
         </div>
       </div>
 
+      <p style="font-size:.82rem;color:var(--ink-muted);line-height:1.8;font-style:italic;">(For similar systems today, I use AI tools to speed up the upfront mapping and prototyping, but the component-reuse, fast-delivery thinking from back then is still the foundation.)</p>
     </section>
   </div>
 
