@@ -303,7 +303,7 @@
       background: rgba(255,255,255,.55);
     }
     .project-info { padding: 1.5rem 1.75rem 1.75rem; }
-    .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .7rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: .4rem; margin-bottom: .7rem; overflow: hidden; max-height: 2.8rem; }
     .project-meta {
       font-family: var(--font-mon); font-size: .68rem;
       letter-spacing: .14em; text-transform: uppercase;
@@ -312,6 +312,8 @@
       padding: .25rem .8rem;
       border-radius: 100px;
       background: var(--accent);
+      line-height: 1;
+      white-space: nowrap;
     }
     .project-title {
       font-family: var(--font-ser); font-size: 1.8rem;
@@ -689,6 +691,14 @@
     }
 
     /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 1200px) {
+      .project-meta {
+        font-size: .62rem;
+        padding: .22rem .65rem;
+        letter-spacing: .11em;
+      }
+      .project-tags { gap: .35rem; max-height: 2.5rem; }
+    }
     @media (max-width: 1024px) {
       .hero { padding-top: 8rem; }
       .about-inner { max-width: 100%; }
@@ -698,6 +708,12 @@
       .project-card:nth-child(1) { grid-column: span 2; }
       .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
       .principles-grid { grid-template-columns: 1fr 1fr; }
+      .project-meta {
+        font-size: .60rem;
+        padding: .20rem .55rem;
+        letter-spacing: .10em;
+      }
+      .project-tags { gap: .3rem; max-height: 2.35rem; }
     }
     @media (max-width: 768px) {
       html { font-size: 18px; }
@@ -721,6 +737,8 @@
       .work-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
       .about-lang { gap: .5rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; justify-content: center; }
+      .project-meta { font-size: .60rem; padding: .20rem .55rem; }
+      .project-tags { max-height: 2.35rem; }
     }
     @media (max-width: 480px) {
       html { font-size: 17px; }
@@ -729,6 +747,8 @@
       .hero-name { font-size: 3rem; white-space: normal; }
       .contact-email-link { font-size: 1.4rem; }
       .about-tags { gap: .4rem; }
+      .project-meta { font-size: .58rem; padding: .18rem .50rem; letter-spacing: .08em; }
+      .project-tags { gap: .28rem; max-height: 2.2rem; }
     }
     /* ─── WORK TABS ──────────────────────────────────── */
     .work-tabs {
