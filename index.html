@@ -333,85 +333,162 @@
     .project-card:nth-child(8) .project-thumb-bg { background: #1b2e20; padding: 0 2.5rem; text-align: center; }
     .project-card:nth-child(9) .project-thumb-bg { background: #1e3328; padding: 0 2.5rem; text-align: center; }
 
-    /* ─── MORE WORK CARD — Glassmorphism ──────────────── */
+    /* ─── MORE WORK CARD — Soft Glass · Neumorphic · Diffuse Light ── */
     .more-work-card {
       display: none;
       position: relative;
       overflow: hidden;
       cursor: none;
-      min-height: 260px;
+      min-height: 280px;
+      border-radius: 0;
+
+      /* Uniform sage-green — centered glow, no uneven hot-spots */
       background:
-        radial-gradient(ellipse 90% 80% at 10% 20%, rgba(61,92,58,.32) 0%, transparent 52%),
-        radial-gradient(ellipse 70% 90% at 90% 80%, rgba(61,92,58,.20) 0%, transparent 52%),
-        radial-gradient(ellipse 80% 50% at 50% 110%, rgba(138,152,112,.45) 0%, transparent 55%),
-        linear-gradient(145deg, #b6c0a4 0%, #c2c9b0 45%, #ccd4bc 100%);
-      border: 1px solid rgba(255,255,255,.22);
-      transition: transform .45s var(--ease);
+        radial-gradient(ellipse 160% 120% at 50% 50%, rgba(200,210,188,.18) 0%, transparent 68%),
+        linear-gradient(160deg, #c6ceb6 0%, #c2c9b0 52%, #becaac 100%);
+
+      /* Neumorphic: NW sage-cream highlight + SE dark shadow */
+      box-shadow:
+        -6px -6px 16px rgba(218,228,208,.62),
+         7px  8px 20px rgba(86,108,70,.22),
+         0    2px  6px rgba(58,74,46,.05);
+
+      border: 1px solid rgba(210,220,200,.38);
+      transition: transform .5s var(--ease), box-shadow .5s var(--ease);
     }
     .more-work-card.visible { display: block; }
-    .more-work-card:hover { transform: scale(1.014); }
-
-    /* Diagonal shimmer overlay */
-    .more-work-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg,
-        rgba(255,255,255,.16) 0%,
-        rgba(255,255,255,.04) 45%,
-        transparent 72%);
-      pointer-events: none; z-index: 1;
+    .more-work-card:hover {
+      transform: translateY(-5px) scale(1.012);
+      box-shadow:
+        -7px -7px 20px rgba(218,228,208,.70),
+        11px 13px 28px rgba(78,100,62,.24),
+         0    7px 26px rgba(58,74,46,.08);
     }
 
-    /* Glass panel */
+    /* Soft diagonal shimmer — sage-cream tinted, no stark white */
+    .more-work-card::before {
+      content: '';
+      position: absolute; inset: 0; z-index: 1;
+      border-radius: inherit; pointer-events: none;
+      background: linear-gradient(
+        138deg,
+        rgba(232,238,222,.22)  0%,
+        rgba(230,236,218,.06) 38%,
+        transparent            62%,
+        rgba(61,92,58,.04)   100%
+      );
+    }
+
+    /* ─── ATMOSPHERIC BOKEH ORBS ─────────────────────── */
+    .mwc-orb {
+      position: absolute; border-radius: 50%;
+      pointer-events: none; z-index: 0;
+    }
+    .mwc-orb-a {
+      width: 220px; height: 220px;
+      top: -55px; right: -45px;
+      background: radial-gradient(circle at 38% 38%,
+        rgba(194,210,178,.52) 0%,
+        rgba(138,152,112,.22) 45%,
+        transparent 70%);
+      filter: blur(22px);
+      animation: mwc-float-a 10s ease-in-out infinite;
+    }
+    .mwc-orb-b {
+      width: 165px; height: 165px;
+      bottom: -38px; left: -28px;
+      background: radial-gradient(circle at 62% 62%,
+        rgba(184,200,166,.44) 0%,
+        rgba(120,140,100,.18) 48%,
+        transparent 70%);
+      filter: blur(18px);
+      animation: mwc-float-b 13s ease-in-out infinite 2s;
+    }
+    @keyframes mwc-float-a {
+      0%,100% { transform: translate(0,0) scale(1); }
+      42%     { transform: translate(-10px,8px) scale(1.07); }
+      72%     { transform: translate(5px,-6px) scale(0.96); }
+    }
+    @keyframes mwc-float-b {
+      0%,100% { transform: translate(0,0) scale(1); }
+      38%     { transform: translate(9px,-11px) scale(1.06); }
+      72%     { transform: translate(-6px,7px) scale(0.97); }
+    }
+
+    /* ─── FROSTED GLASS PANEL ───────────────────────── */
     .mwc-glass {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
-      z-index: 2; padding: 2rem;
+      z-index: 2; padding: 2.2rem 2.5rem;
     }
     .mwc-glass-panel {
-      background: rgba(240,238,230,.28);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255,255,255,.52);
-      border-radius: 1.4rem;
-      padding: 2rem 3.2rem;
+      /* Warm frosted cream — gentle tint over sage */
+      background: linear-gradient(
+        148deg,
+        rgba(248,246,240,.36) 0%,
+        rgba(234,238,228,.20) 100%
+      );
+      backdrop-filter: blur(28px) saturate(1.35) brightness(1.06);
+      -webkit-backdrop-filter: blur(28px) saturate(1.35) brightness(1.06);
+
+      border-radius: 1.5rem;
+      padding: 2.2rem 3.2rem;
       display: flex; flex-direction: column;
-      align-items: center; gap: 1.3rem;
+      align-items: center; gap: 1.4rem;
       text-align: center;
+
+      /* Glass edge + layered inset highlights — sage-cream toned */
+      border: 1px solid rgba(214,224,202,.44);
       box-shadow:
-        0 8px 32px rgba(26,26,24,.08),
-        0 2px 8px rgba(26,26,24,.04),
-        inset 0 1px 0 rgba(255,255,255,.58);
-      transition: box-shadow .4s var(--ease), transform .4s var(--ease);
+        0  10px 40px rgba(26,26,24,.08),
+        0   3px 10px rgba(26,26,24,.04),
+        inset  0  1px  0 rgba(235,238,225,.65),
+        inset  1px 0   0 rgba(228,234,216,.30),
+        inset  0 -1px  0 rgba(58,74,46,.05),
+        inset  0  0  30px rgba(226,230,218,.12);
+
+      transition: background .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease);
     }
     .more-work-card:hover .mwc-glass-panel {
+      background: linear-gradient(
+        148deg,
+        rgba(240,242,234,.42) 0%,
+        rgba(228,233,220,.26) 100%
+      );
       box-shadow:
-        0 20px 60px rgba(26,26,24,.14),
-        0 4px 16px rgba(26,26,24,.07),
-        inset 0 1px 0 rgba(255,255,255,.65);
-      transform: translateY(-3px);
+        0  22px 64px rgba(26,26,24,.11),
+        0   5px 18px rgba(26,26,24,.06),
+        inset  0  1px  0 rgba(236,240,226,.72),
+        inset  1px 0   0 rgba(228,234,216,.36),
+        inset  0 -1px  0 rgba(58,74,46,.07),
+        inset  0  0  40px rgba(220,228,210,.18);
+      transform: translateY(-4px);
     }
     .mwc-quote {
       font-family: var(--font-ser);
-      font-size: 1.5rem; font-weight: 400; font-style: italic;
-      color: rgba(26,26,24,.80);
-      line-height: 1.3; letter-spacing: -.01em;
+      font-size: 1.55rem; font-weight: 400; font-style: italic;
+      color: rgba(26,26,24,.82);
+      line-height: 1.35; letter-spacing: -.01em;
     }
     .mwc-explore-btn {
       display: inline-flex; align-items: center; gap: .55rem;
       font-family: var(--font-mon); font-size: .65rem;
       font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
       color: var(--white);
-      background: var(--accent);
+      background: linear-gradient(138deg, var(--accent) 0%, #2d4829 100%);
       border: none; border-radius: 100px;
-      padding: .56rem 1.4rem; cursor: none;
-      box-shadow: 0 4px 16px rgba(61,92,58,.35);
-      transition: background .25s, transform .25s var(--ease), box-shadow .25s;
+      padding: .58rem 1.5rem; cursor: none;
+      box-shadow:
+        0 4px 18px rgba(61,92,58,.40),
+        inset 0 1px 0 rgba(255,255,255,.14);
+      transition: background .28s, transform .28s var(--ease), box-shadow .28s;
     }
     .more-work-card:hover .mwc-explore-btn {
-      background: #2e4a2b;
+      background: linear-gradient(138deg, #2d4829 0%, #1e3318 100%);
       transform: translateX(4px);
-      box-shadow: 0 6px 22px rgba(61,92,58,.45);
+      box-shadow:
+        0 7px 26px rgba(61,92,58,.52),
+        inset 0 1px 0 rgba(255,255,255,.18);
     }
     .mwc-explore-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
 
@@ -1270,8 +1347,10 @@
         </a>
       </article>
 
-      <!-- More work card — glassmorphism -->
+      <!-- More work card — soft glass · neumorphic · diffuse light -->
       <div class="more-work-card" id="more-work-card" role="button" tabindex="0" aria-label="Show all projects">
+        <span class="mwc-orb mwc-orb-a" aria-hidden="true"></span>
+        <span class="mwc-orb mwc-orb-b" aria-hidden="true"></span>
         <div class="mwc-glass">
           <div class="mwc-glass-panel">
             <div class="mwc-quote">I love turning mess into clear design.</div>
