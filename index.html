@@ -342,10 +342,8 @@
       min-height: 280px;
       border-radius: 0;
 
-      /* Uniform sage-green — centered glow, no uneven hot-spots */
-      background:
-        radial-gradient(ellipse 160% 120% at 50% 50%, rgba(200,210,188,.18) 0%, transparent 68%),
-        linear-gradient(160deg, #c6ceb6 0%, #c2c9b0 52%, #becaac 100%);
+      /* Flat sage-green — no gradient hot-spots */
+      background: #bfcca6;
 
       /* Neumorphic: NW sage-cream highlight + SE dark shadow */
       box-shadow:
@@ -365,18 +363,12 @@
          0    7px 26px rgba(58,74,46,.08);
     }
 
-    /* Soft diagonal shimmer — sage-cream tinted, no stark white */
+    /* Shimmer removed — keep background uniform */
     .more-work-card::before {
       content: '';
       position: absolute; inset: 0; z-index: 1;
       border-radius: inherit; pointer-events: none;
-      background: linear-gradient(
-        138deg,
-        rgba(232,238,222,.22)  0%,
-        rgba(230,236,218,.06) 38%,
-        transparent            62%,
-        rgba(61,92,58,.04)   100%
-      );
+      background: transparent;
     }
 
     /* ─── ATMOSPHERIC BOKEH ORBS ─────────────────────── */
@@ -387,21 +379,13 @@
     .mwc-orb-a {
       width: 220px; height: 220px;
       top: -55px; right: -45px;
-      background: radial-gradient(circle at 38% 38%,
-        rgba(194,210,178,.52) 0%,
-        rgba(138,152,112,.22) 45%,
-        transparent 70%);
-      filter: blur(22px);
+      background: transparent;
       animation: mwc-float-a 10s ease-in-out infinite;
     }
     .mwc-orb-b {
       width: 165px; height: 165px;
       bottom: -38px; left: -28px;
-      background: radial-gradient(circle at 62% 62%,
-        rgba(184,200,166,.44) 0%,
-        rgba(120,140,100,.18) 48%,
-        transparent 70%);
-      filter: blur(18px);
+      background: transparent;
       animation: mwc-float-b 13s ease-in-out infinite 2s;
     }
     @keyframes mwc-float-a {
